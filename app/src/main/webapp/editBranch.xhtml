@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+
+
+
+
+    <f:metadata>
+        <f:viewParam name="branchId" value="#{branchController.editBranchRequest.id}"/>
+        <f:viewParam name="name" value="#{branchController.editBranchRequest.name}"/>
+    </f:metadata>
+
+    <h:head>
+        <title>Edit Branch</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+    </h:head>
+
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="content">
+
+                <h:form>
+
+                    <div class="wrap-login100" align="center">
+                        <h:outputLabel value="Edit branch"/>
+                    </div>
+
+                    <h:inputHidden value="#{branchController.editBranchRequest.id}" />
+
+                    <div class="wrap-login100" align="center">
+                        <h:outputLabel for="name" value = "Name"/>
+                        <h:inputText id="name" value="#{branchController.editBranchRequest.name}" class="input100"/>
+                    </div>
+
+                    <div class="wrap-login100" align="center">
+                        <h:commandButton value="Save" action="#{branchController.save}" class="btn btn-outline-primary"/>
+                    </div>
+
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+</f:view>
+</html>

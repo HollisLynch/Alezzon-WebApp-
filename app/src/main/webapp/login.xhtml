@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+
+<h:body>
+<ui:composition template="template.xhtml">
+    <ui:define name="content">
+
+        <h:form style="display:block; text-align:center">
+
+            <h:panelGroup>
+                <div class="form-group">
+                    <h:outputLabel value="Username: "/>
+
+                    <h:inputText value="#{loginRequest.username}"
+                                 type="text"
+                                 id="username"
+                                 required="true" >
+                    </h:inputText>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+
+                    <h:message for="username" style="color: red;"/>
+                </div>
+            </h:panelGroup>
+
+
+
+            <h:panelGroup>
+                <div class="form-group">
+                    <h:outputLabel value="Password: "/>
+
+                    <h:inputSecret value="#{loginRequest.password}"
+                                   id="password"
+                                   placeholder="Password"
+                                   required="true">
+                    </h:inputSecret>
+
+                    <h:message for="password" style="color: red;" />
+                </div>
+            </h:panelGroup>
+
+
+
+            <h:commandButton value="Login" class="btn btn-primary" action="#{loginController.login}" />
+
+
+            <div>
+            <button onclick="location.href='registration.xhtml'" type="button" class="btn btn-outline-primary">
+                Registration</button>
+            </div>
+
+        </h:form>
+
+
+
+    </ui:define>
+</ui:composition>
+
+    
+</h:body>
+</html>

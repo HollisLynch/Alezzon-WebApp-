@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:body>
+    <ui:composition template="template.xhtml">
+    <ui:define name="content">
+
+    <h:form>
+        <div class="wrap-login100" align="center">
+            <h:outputLabel for="categorylist">Category to select</h:outputLabel>
+            <h:selectOneMenu class="form-control" id="categorylist"
+                             value="#{productController.getAddRequest().categoryId}">
+                <f:selectItems value="#{listCategoryController.getCategoryList()}" var="category"
+                               itemValue="#{category.id}"
+                               itemLabel="#{category.name}"/>
+            </h:selectOneMenu>
+        </div>
+
+
+        <div class="wrap-login100" align="center">
+            <h:outputLabel for="title">Title</h:outputLabel>
+            <h:inputText id="title" value="#{productController.getAddRequest().title}"
+                         class="form-control" required="true"/>
+        </div>
+
+        <div class="wrap-login100" align="center">
+            <h:outputLabel for="description">Description</h:outputLabel>
+            <h:inputText id="description"
+                         value="#{productController.getAddRequest().description}"
+                         class="form-control" required="true"/>
+        </div>
+
+        <div class="wrap-login100" align="center">
+            <h:outputLabel for="price">Price</h:outputLabel>
+            <h:inputText id="price" value="#{productController.getAddRequest().price}"
+                         class="form-control">
+                <f:validateDoubleRange minimum="0.01" maximum="100000.99"/>
+            </h:inputText>
+                </div>
+
+        <div class="wrap-login100" align="center">
+            <h:outputLabel for="link">link of Photo to add to product</h:outputLabel>
+            <h:inputText id="link" value="#{pictureController.getAddPhotoRequest().link}"
+                         class="form-control" required="true">
+            </h:inputText>
+        </div>
+
+        <div class="wrap-login100" align="center">
+            <h:commandButton value="Add" action="#{productController.save()}"
+                             class="btn btn-outline-primary"/>
+        </div>
+
+                    </h:form>
+    </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

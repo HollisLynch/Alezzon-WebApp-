@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+
+<!--    <f:metadata>-->
+<!--        <f:viewParam name="id" value="#{editProductController.getEditRequest().id}"/>-->
+<!--        <f:viewParam name="title" value="#{editProductController.getEditRequest().title}"/>-->
+<!--        <f:viewParam name="description" value="#{editProductController.getEditRequest().description}"/>-->
+<!--        <f:viewParam name="price" value="#{editProductController.getEditRequest().price}"/>-->
+<!--        <f:viewParam name="category" value="#{editProductController.getEditRequest().category}"/>-->
+<!--        <f:viewParam name="picture" value="#{editProductController.getEditRequest().pictures}"/>-->
+<!--    </f:metadata>-->
+
+    <h:head>
+        <title>Edit</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+    </h:head>
+
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="content">
+                <h:form id="product" var="product">
+                    <fieldset>
+
+                        <!--                        <c:forEach var="product" items="#{listProductController.getProductList()}">-->
+
+
+
+<!--                        <div class="form-group">-->
+<!--                            <h:outputLabel for="title">Select product:</h:outputLabel>-->
+<!--                            <h:selectOneMenu class="form-control"  value="#{editProductController.getEditRequest().getTitle()}">-->
+
+<!--                                <f:selectItems value="#{listProductController.getProductList()}" var="product"-->
+<!--                                               itemValue="#{product.id}"-->
+<!--                                               itemLabel="#{product.title}"/>-->
+
+<!--                            </h:selectOneMenu>-->
+
+<!--                        </div>-->
+
+<!--                        <h:inputHidden value="#{editProductController.getEditRequest().id}"/>-->
+
+                        <div class="form-group">
+                            <label for = "title">Title:</label>
+                            <h:inputText id="title"
+                                         class="form-control"
+                                         value="#{editProductController.getEditRequest().title}"/>
+                        </div>
+
+<!--                        <h:commandButton value = "Save Title"-->
+<!--                                         action = "#{editProductController.save()}" -->
+<!--                                         -->
+<!--                        />-->
+<!--                                         onclick="form.action='UpdateTitle';"-->
+
+
+
+
+<!--                    <div class="form-group">-->
+<!--                        <label>Category:</label>-->
+
+<!--                                                            <h:selectOneMenu class="form-control" id="catlist"-->
+<!--                                                                             value="#{editProductController.getEditRequest().getCategory().id}">-->
+<!--                                                                <f:selectItems value="#{editProductController.getEditRequest().category}"-->
+<!--                                                                               var="category"-->
+<!--                                                                               itemValue="#{category.id}"-->
+<!--                                                                               itemLabel="#{category.name}"/>-->
+<!--                                                            </h:selectOneMenu>-->
+<!--                                                            <h:inputText id="category"-->
+<!--                                                                         value="#{editProductController.getEditRequest().category}" />-->
+<!--                        </div>-->
+
+                        <div class="form-group">
+                            <label for = "description">Description:</label>
+                            <h:inputText id="description"
+                                         class="form-control"
+                                         value="#{editProductController.getEditRequest().description}"/>
+                        </div>
+
+<!--                        <div class="form-group">-->
+<!--                        <h:outputLabel for="pictures">Choose a photo</h:outputLabel>-->
+<!--                        <h:selectOneMenu class="form-control" id="pictures"-->
+<!--                                         value="#{editProductController.getEditRequest().getPictures().id}">-->
+<!--                            <f:selectItems value="#{editProductController.getEditRequest().pictures}"-->
+<!--                                           var="picture"-->
+<!--                                           itemValue="#{picture.id}"-->
+<!--                                           itemLabel="#{picture.link}"/>-->
+<!--                        </h:selectOneMenu>-->
+<!--                        </div>-->
+
+                        <div class="form-group">
+                            <label for = "param">Parameters:</label>
+                            <ui:repeat var="productParametr" value="#{listProductController.getParamByProductId(product.id)}">
+                                <h:outputText value="#{productParametr.parameter.value} : #{productParametr.value}"
+                                              />
+                                <h:inputText id="param" value="#{editProductController.getEditRequest().description}"
+                                             />
+                            </ui:repeat>
+                        </div>
+
+                        <div class="form-group">
+                            <label for = "price">Price:</label>
+                            <h:inputText id="price"
+                                         class="form-control"
+                                         value="#{editProductController.getEditRequest().price}"/>
+                        </div>
+                    <br/>
+
+                    <h:commandButton value = "Save Product"
+                                     action = "#{editProductController.save()}"/>
+
+                    </fieldset>
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</f:view>
+</html>

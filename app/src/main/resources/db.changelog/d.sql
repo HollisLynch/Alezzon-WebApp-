@@ -1,0 +1,1 @@
+alter table product alter column category type BIGINT using category::BIGINT;
