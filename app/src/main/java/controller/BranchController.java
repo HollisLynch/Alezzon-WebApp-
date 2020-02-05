@@ -15,16 +15,16 @@ public class BranchController{
     @Inject
     BranchRepository branchRepository;
 
-    private BranchRequest editBranchRequest;
+    private BranchRequest branchRequest;
 
     @Inject
     private Retriever retriever;
 
     public BranchRequest getEditBranchRequest() {
-        if (editBranchRequest == null) {
-            editBranchRequest = createEditBranchRequest();
+        if (branchRequest == null) {
+            branchRequest = createEditBranchRequest();
         }
-        return editBranchRequest;
+        return branchRequest;
     }
 
     private BranchRequest createEditBranchRequest() {
@@ -32,6 +32,7 @@ public class BranchController{
     }
 
     public String save() {
+
 
         return "/admin.xhtml?faces-redirect=true";
 

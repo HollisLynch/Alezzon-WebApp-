@@ -1,7 +1,7 @@
 package controller;
 
 import request.ParamRequest;
-import request.add.AddProductParamRequest;
+import request.ProductParamRequest;
 import service.ParamService;
 
 import javax.enterprise.context.RequestScoped;
@@ -17,7 +17,7 @@ public class ParamController {
 
     private ParamRequest addParamRequest;
 
-    private AddProductParamRequest addProductParamRequest;
+    private ProductParamRequest productParamRequest;
 
     @Inject
     private Retriever retriever;
@@ -33,11 +33,11 @@ public class ParamController {
         return null;
     }
 
-    public AddProductParamRequest getAddProductParameterRequest() {
-        if (addProductParamRequest == null) {
-            addProductParamRequest = new AddProductParamRequest();
+    public ProductParamRequest getAddProductParameterRequest() {
+        if (productParamRequest == null) {
+            productParamRequest = new ProductParamRequest();
         }
-        return addProductParamRequest;
+        return productParamRequest;
     }
 
     public String save() {

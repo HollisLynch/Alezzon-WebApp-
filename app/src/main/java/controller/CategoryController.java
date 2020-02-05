@@ -11,10 +11,10 @@ import java.io.Serializable;
 
 @Named
 @RequestScoped
-public class CategoryController implements Serializable {
+public class CategoryController {
 
 
-   private CategoryRequest addCategoryRequest;
+   private CategoryRequest categoryRequest;
 
    @Inject
    private Retriever retriever;
@@ -24,10 +24,10 @@ public class CategoryController implements Serializable {
 
 
     public CategoryRequest getAddRequest() {
-        if (addCategoryRequest == null) {
-            addCategoryRequest = new CategoryRequest();
+        if (categoryRequest == null) {
+            categoryRequest = new CategoryRequest();
         }
-        return addCategoryRequest;
+        return categoryRequest;
     }
 
      public String save() {

@@ -1,4 +1,4 @@
-package request.add;
+package request;
 
 import model.ProductParametr;
 
@@ -7,7 +7,7 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-public class AddProductParamRequest {
+public class ProductParamRequest {
 
     private Long product;
     private Long parameter;
@@ -37,10 +37,10 @@ public class AddProductParamRequest {
         this.value = value;
     }
 
-    public AddProductParamRequest() {
+    public ProductParamRequest() {
     }
 
-    public AddProductParamRequest(Long product, Long parameter, String value) {
+    public ProductParamRequest(Long product, Long parameter, String value) {
         this.product = product;
         this.parameter = parameter;
         this.value = value;
