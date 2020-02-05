@@ -1,7 +1,7 @@
 package controller.edit;
 
 import controller.Retriever;
-import request.edit.EditPictureRequest;
+import request.PictureRequest;
 import request.edit.EditProductRequest;
 import service.EditProductService;
 
@@ -24,7 +24,7 @@ public class EditProductController implements Serializable {
     @Inject
     private Retriever retriever;
 
-    private EditPictureRequest editPictureRequest;
+    private PictureRequest editPictureRequest;
 
 
     public EditProductRequest getEditRequest() {

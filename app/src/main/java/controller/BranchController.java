@@ -1,7 +1,7 @@
 package controller;
 
 import repository.BranchRepository;
-import request.edit.EditBranchRequest;
+import request.BranchRequest;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -15,19 +15,19 @@ public class BranchController{
     @Inject
     BranchRepository branchRepository;
 
-    private EditBranchRequest editBranchRequest;
+    private BranchRequest editBranchRequest;
 
     @Inject
     private Retriever retriever;
 
-    public EditBranchRequest getEditBranchRequest() {
+    public BranchRequest getEditBranchRequest() {
         if (editBranchRequest == null) {
             editBranchRequest = createEditBranchRequest();
         }
         return editBranchRequest;
     }
 
-    private EditBranchRequest createEditBranchRequest() {
+    private BranchRequest createEditBranchRequest() {
         return null;
     }
 

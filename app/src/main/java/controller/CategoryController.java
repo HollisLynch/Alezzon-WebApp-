@@ -1,19 +1,12 @@
 package controller;
 
-
-import model.Branch;
-import model.Category;
-import repository.BranchRepository;
-import repository.CategoryRepository;
-import request.add.AddCategoryRequest;
+import request.CategoryRequest;
 import service.CategoryService;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.List;
 
 
 @Named
@@ -21,7 +14,7 @@ import java.util.List;
 public class CategoryController implements Serializable {
 
 
-   private AddCategoryRequest addCategoryRequest;
+   private CategoryRequest addCategoryRequest;
 
    @Inject
    private Retriever retriever;
@@ -30,9 +23,9 @@ public class CategoryController implements Serializable {
    CategoryService categoryService;
 
 
-    public AddCategoryRequest getAddRequest() {
+    public CategoryRequest getAddRequest() {
         if (addCategoryRequest == null) {
-            addCategoryRequest = new AddCategoryRequest();
+            addCategoryRequest = new CategoryRequest();
         }
         return addCategoryRequest;
     }
