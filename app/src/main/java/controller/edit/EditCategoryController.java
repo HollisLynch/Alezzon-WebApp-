@@ -1,8 +1,7 @@
 package controller.edit;
 
 import controller.Retriever;
-import model.Category;
-import request.edit.EditCategoryRequest;
+import request.CategoryRequest;
 import service.CategoryService;
 
 import javax.enterprise.context.RequestScoped;
@@ -13,7 +12,7 @@ import javax.inject.Named;
 @RequestScoped
 public class EditCategoryController {
 
-    private EditCategoryRequest editCategoryRequest;
+    private CategoryRequest editCategoryRequest;
 
     @Inject
     private CategoryService categoryService;
@@ -21,18 +20,18 @@ public class EditCategoryController {
     @Inject
     Retriever retriever;
 
-    public EditCategoryRequest getEditRequest() {
+    public CategoryRequest getEditRequest() {
         if (editCategoryRequest == null) {
             editCategoryRequest = createEditCategoryRequest();
         }
         return editCategoryRequest;
     }
 
-    private EditCategoryRequest createEditCategoryRequest() {
+    private CategoryRequest createEditCategoryRequest() {
         if (retriever.contains("categoryId")) {
 
         }
-        return new EditCategoryRequest();
+        return new CategoryRequest();
     }
 
     public String save() {

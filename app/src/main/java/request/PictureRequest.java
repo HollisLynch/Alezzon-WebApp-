@@ -1,14 +1,14 @@
-package request.add;
+package request;
 
-public class AddPictureRequest {
+public class PictureRequest {
     private Long id;
     private String link;
     private Long productId;
 
-    public AddPictureRequest() {
+    public PictureRequest() {
     }
 
-    public AddPictureRequest(Long id, String link, Long productId) {
+    public PictureRequest(Long id, String link, Long productId) {
         this.id = id;
         this.link = link;
         this.productId = productId;

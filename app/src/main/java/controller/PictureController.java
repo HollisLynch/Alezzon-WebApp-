@@ -1,13 +1,11 @@
 package controller;
 
 
-import model.Picture;
 import model.Product;
-import request.add.AddPictureRequest;
+import request.PictureRequest;
 import service.PictureService;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
@@ -19,16 +17,16 @@ public class PictureController {
     @Inject
     PictureService pictureService;
 
-    AddPictureRequest addPictureRequest;
+    PictureRequest addPictureRequest;
 
     @Inject
     Retriever retriever;
 
 
 
-    public AddPictureRequest getAddPhotoRequest() {
+    public PictureRequest getAddPhotoRequest() {
         if (addPictureRequest == null) {
-            addPictureRequest = new AddPictureRequest();
+            addPictureRequest = new PictureRequest();
         }
         return addPictureRequest;
     }

@@ -37,4 +37,7 @@ public class CategoryRequest {
     public void setBranchId(Branch branchId) {
         this.branchId = branchId;
     }
+
+    public CategoryRequest() {
+    }
 }
