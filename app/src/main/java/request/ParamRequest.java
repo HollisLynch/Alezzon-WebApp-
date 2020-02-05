@@ -1,13 +1,13 @@
-package request.add;
+package request;
 
 import model.Parametr;
 
-public class AddParamRequest {
+public class ParamRequest {
 
     private Long id;
     private String value;
 
-    public AddParamRequest(Parametr param) {
+    public ParamRequest(Parametr param) {
         this.id = id;
         this.value = value;
     }
@@ -28,7 +28,7 @@ public class AddParamRequest {
         this.value = value;
     }
 
-    public AddParamRequest() {
+    public ParamRequest() {
     }
 
 
