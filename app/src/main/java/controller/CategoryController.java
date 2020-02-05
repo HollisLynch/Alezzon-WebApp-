@@ -30,6 +30,10 @@ public class CategoryController {
         return categoryRequest;
     }
 
+    private CategoryRequest createAddRequest() {
+        return null;
+    }
+
      public String save() {
 
              return "/admin.xhtml?faces-redirect=true";
