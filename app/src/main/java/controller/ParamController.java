@@ -26,8 +26,8 @@ public class ParamController {
     @Inject
     ParamService paramService;
 
-
     private AddParamRequest addParamRequest;
+
     private AddProductParamRequest addProductParamRequest;
 
     @Inject
@@ -41,12 +41,7 @@ public class ParamController {
     }
 
     private AddParamRequest createAddParamRequest() {
-        if (retriever.contains("paramId")) {
-            var paramId = retriever.getLong("paramId");
-            var param = paramService.findParamById(paramId).orElseThrow();  //TODO
-            return new AddParamRequest(param);
-        }
-        return new AddParamRequest();
+        return null;
     }
 
     public AddProductParamRequest getAddProductParameterRequest() {
@@ -58,57 +53,20 @@ public class ParamController {
 
     public String save() {
 
-        String paramName = addParamRequest.getValue();
-        if (!paramService.doesParamExist(paramName)) {
-            paramService.save(new Parametr(paramName));
 
             return "/addParameter.xhtml?faces-redirect=true";
-        } else {
-            FacesContext.getCurrentInstance().getExternalContext().getFlash()
-                    .put("error-message", "Parameter exists");
-            return "/addParameter.xhtml?faces-redirect=true";
-        }
+
     }
 
     public String saveProductParam() {
 
-        var product = paramService.findProductById(addProductParamRequest.getProduct()).orElseThrow();
-        var parameter = paramService.findParamById(addProductParamRequest.getParameter()).orElseThrow();
-        String valueParam = addProductParamRequest.getValue().trim();
-        Long parameterId = parameter.getId();
-        Long productId = product.getId();
-
-        if (!paramService.doesProductParamExist(valueParam,parameterId,productId)) {
-
-            paramService.saveProductParam(new ProductParametr(product, parameter, valueParam));
 
             return "/addParameter.xhtml?faces-redirect=true";
 
-        }
 
-        else {
-
-            FacesContext.getCurrentInstance().getExternalContext().getFlash()
-                    .put("error-message", "Value already exists");
-            return "/addParameter.xhtml?faces-redirect=true";
-
-        }
-    }
-
-    public Long getOwnerId() {
-
-        Long ownerid = retriever.getLongUserId("id");
-        return ownerid;
-    }
-    public List<Product> getProductListByOwnerId() {
-
-        Long ownerId = getOwnerId();
-        return paramService.getProductListByOwnerId(ownerId);
 
     }
 
-    public List<Parametr> getParamList(){
-        return paramService.getParamList();
-    }
+
 
 }

@@ -11,15 +11,10 @@ public class User  {
     private Long id;
 
     private String name;
-
     private String username;
-
     private String password;
-
     private String email;
-
     private String birth;
-
     private String role;
 
     public User(String name, String username, String password, String email, String birth, String role) {

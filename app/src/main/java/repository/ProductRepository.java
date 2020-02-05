@@ -8,18 +8,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @ApplicationScoped
 public class ProductRepository {
     @PersistenceContext
     EntityManager em;
 
-    @Transactional
-    public Optional<Product> findProductById(Long productId) {
-        var product = em.find(Product.class, productId);
-        return Optional.ofNullable(product);
-    }
+
 
     @Transactional
     public Product findProductById1(Long productId) {

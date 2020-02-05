@@ -2,11 +2,7 @@ package request.edit;
 
 import model.Category;
 import model.Picture;
-import model.Product;
 import model.ProductParametr;
-
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
 import java.util.List;
 
 
@@ -42,13 +38,6 @@ public class EditProductRequest {
 
 
 
-    public boolean isEditable() {
-        return editable;
-    }
-
-    public void setEditable(boolean editable) {
-        this.editable = editable;
-    }
 
     public EditProductRequest() {
     }

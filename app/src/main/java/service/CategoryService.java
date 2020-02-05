@@ -29,30 +29,17 @@ public class CategoryService {
         return  categoryRepository.findCategoryById(categoryId);
     }
 
-    public List<Category> findCategoryByBranchId(Long branchId){
-        return categoryRepository.findCategoryByBranchId(branchId);
-
-    }
 
     public void save(Category category) {
         categoryRepository.save(category);
     }
 
-    public List<Branch> getBranchList() {
-        return branchRepository.findAll();
-    }
 
     public List<Category> findAll(){
         return categoryRepository.findAll();
     }
 
-    public List<Branch> getBranchListFromCategory(){
-        return categoryRepository.getBranchListFromCategory();
-    }
 
-    public Branch getBranchFromCategory1(Long categoryId){
-        return categoryRepository.getBranchFromCategory1(categoryId);
-    }
     public Optional<Branch> getBranchFromCategory(Long categoryId){
         return categoryRepository.getBranchFromCategory(categoryId);
     }

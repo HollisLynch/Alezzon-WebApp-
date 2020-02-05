@@ -18,11 +18,7 @@ public class UserRepository {
                 .getSingleResult();
     }
 
-    public User getRoleByUser(String username) {
-        return em.createQuery("select u.role from User u where u.username = :username", User.class)
-                .setParameter("username", username)
-                .getSingleResult();
-    }
+
 
 
 }

@@ -30,17 +30,12 @@ public class EditCategoryController {
 
     private EditCategoryRequest createEditCategoryRequest() {
         if (retriever.contains("categoryId")) {
-            var categoryId = retriever.getLong("categoryId");
-            var category = categoryService.findCategoryById(categoryId).orElseThrow();  //TODO
-            return new EditCategoryRequest(category);
+
         }
         return new EditCategoryRequest();
     }
 
     public String save() {
-
-        var branch = categoryService.getBranchFromCategory(editCategoryRequest.getId()).orElseThrow();
-        categoryService.save(new Category(editCategoryRequest.getId(), editCategoryRequest.getName(), branch));
 
         return "/admin/category/categoryList.xhtml?faces-redirect=true";
     }

@@ -30,7 +30,7 @@ public class PictureService {
         return productRepository.getProductListByOwnerId(ownerId);
     }
 
-    public Optional<Product> findProductById(Long productId) {
-        return productRepository.findProductById(productId);
+    public Product findProductById(Long productId) {
+        return productRepository.findProductById1(productId);
     }
 }

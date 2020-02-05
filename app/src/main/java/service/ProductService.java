@@ -17,14 +17,10 @@ public class ProductService {
 
     @Inject
     private CategoryRepository categoryRepository;
-    @Inject
-    private BranchRepository branchRepository;
+
     @Inject
     private ProductRepository productRepository;
 
-    public List<Category> findCategoryByBranchId(Long bId){
-        return categoryRepository.findCategoryByBranchId(bId);
-    }
 
     public List<Category> getCategoryList(){
         return categoryRepository.getCategoryList();

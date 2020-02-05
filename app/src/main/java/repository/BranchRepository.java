@@ -4,8 +4,6 @@ package repository;
 import model.Branch;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -28,10 +26,6 @@ public class BranchRepository {
         }
     }
 
-    @Transactional
-    public List<Branch> getBranchList(){
-        return em.createQuery("select s from Branch s", Branch.class).getResultList();
-    }
 
     @Transactional
     public List<Branch> findAll(){

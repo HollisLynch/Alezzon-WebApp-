@@ -24,10 +24,7 @@ public class PictureController {
     @Inject
     Retriever retriever;
 
-    public Long getOwnerId() {
-        Long ownerid = retriever.getLongUserId("id");
-        return ownerid;
-    }
+
 
     public AddPictureRequest getAddPhotoRequest() {
         if (addPictureRequest == null) {
@@ -37,13 +34,13 @@ public class PictureController {
     }
 
     public List<Product> getProductListByOwnerId(){
-        Long ownerId = getOwnerId();
-        return pictureService.getProductListByOwnerId(ownerId);
+
+
+        return null;
     }
 
     public String save() {
-        var product = pictureService.findProductById(addPictureRequest.getProductId()).orElseThrow();
-        pictureService.save(new Picture(product,addPictureRequest.getLink()));
+
         return "/addPictures.xhtml?faces-redirect=true";
     }
 }

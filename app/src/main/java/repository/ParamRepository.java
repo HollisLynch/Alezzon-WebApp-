@@ -29,10 +29,6 @@ public class ParamRepository {
         return em.createQuery("select s from Parametr s", Parametr.class).getResultList();
     }
 
-    @Transactional
-    public List<Parametr> findAll(){
-        return em.createQuery("from Parametr", Parametr.class).getResultList();
-    }
 
     @Transactional
     public Optional<Parametr> findParamById(Long paramId) {
@@ -67,12 +63,6 @@ public class ParamRepository {
                 .getResultList();
     }
 
-    @Transactional
-    public List<Parametr> getParamByParamId(Long parametrId) {
-        return em.createQuery("select p from Parametr p where p.parametr.id = :parametrId", Parametr.class)
-                .setParameter("parametrId", parametrId)
-                .getResultList();
-    }
 
     @Transactional
     public List<ProductParametr> getParamByProductId(Long productId) {

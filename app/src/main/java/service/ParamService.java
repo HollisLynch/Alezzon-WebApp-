@@ -37,8 +37,8 @@ public class ParamService {
         paramRepository.saveProductParam(parameter);
     }
 
-    public Optional<Product> findProductById(Long productId) {
-        return productRepository.findProductById(productId);
+    public Product findProductById(Long productId) {
+        return productRepository.findProductById1(productId);
     }
 
     public Optional<Parametr> findParamById(Long parameterId) {

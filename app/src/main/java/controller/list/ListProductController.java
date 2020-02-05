@@ -30,9 +30,6 @@ public class ListProductController {
     @Inject
     Retriever retriever;
 
-    public List<Product> getProductList() {
-        return productRepository.findAll();
-    }
 
     public Long getOwnerId() {
 

@@ -29,20 +29,8 @@ public class ProductListService {
 
     }
 
-    public List<ProductParametr> getProductParametrByProductId(Long productId) {
-        return paramRepository.getProductParamByProductId(productId);
-    }
-
-    public List<Parametr> getParamByParamId(Long parameterId) {
-        return paramRepository.getParamByParamId(parameterId);
-    }
-
     public List<Picture> getPicListByProductId(Long productId) {
         return picRepository.getPicListByProductId(productId);
-    }
-
-    public List<ProductParametr> getParamByProductId(Long productId) {
-        return paramRepository.getParamByProductId(productId);
     }
 
     public List<Picture> getFirstPicByProductId(Long productId) {

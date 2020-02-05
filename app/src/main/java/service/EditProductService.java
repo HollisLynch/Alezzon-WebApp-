@@ -15,7 +15,6 @@ import java.util.Optional;
 @ApplicationScoped
 public class EditProductService {
 
-    EntityManager em;
 
     @Inject
     private ProductRepository productRepository;
@@ -37,13 +36,6 @@ public class EditProductService {
 
     }
 
-    public List<ProductParametr> getProductParameterByProductId(Long productId) {
-        return paramRepository.getProductParamByProductId(productId);
-    }
-
-    public List<Parametr> getParameterByParamId(Long parameterId) {
-        return paramRepository.getParamByParamId(parameterId);
-    }
 
     public List<Picture> getPhotoListByProductId(Long productId) {
         return pictureRepository.getPicListByProductId(productId);
@@ -57,17 +49,11 @@ public class EditProductService {
         return productRepository.findCategoryByProductId(productId);
     }
 
-    public Optional<Product> findProductById(Long productId) {
-        return productRepository.findProductById(productId);
-    }
 
     public Product findProductById1(Long productId) {
         return productRepository.findProductById1(productId);
     }
 
-    public Category findCategoryById(Long productId) {
-        return productRepository.findCategoryById(productId);
-    }
 
 
 }

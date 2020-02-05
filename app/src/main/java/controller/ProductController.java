@@ -22,7 +22,6 @@ public class ProductController {
     @Inject
     private Retriever retriever;
 
-
     @Inject
     ProductService productService;
 
@@ -34,39 +33,8 @@ public class ProductController {
         return addProductRequest;
     }
 
-    public List<Category> getCategoryList() {
-        if (getAddRequest().getCategoryId() != null) {
-            return productService.getCategoryList();
-        }
-        return productService.getCategoryList();
-
-    }
-
-
-    public List<Product> getProductListByOwnerId() {
-        Long ownerId = getOwnerId();
-        return productService.getProductListByOwnerId(ownerId);
-    }
-
-
-
-
-    public Long getOwnerId() {
-        Long ownerId = retriever.getLongUserId("id");
-        addProductRequest.setUserId(ownerId);
-        return addProductRequest.getUserId();
-    }
-
 
     public String save() {
-
-        var category = productService.findCategoryById(addProductRequest.getCategoryId()).orElseThrow();
-        productService.save(new Product(category, addProductRequest.getTitle(),
-                                        addProductRequest.getDescription(),
-                                        addProductRequest.getPrice(),
-                                        getOwnerId()));
-
-
 
         return "/addProduct.xhtml?faces-redirect=true";
     }

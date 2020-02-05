@@ -39,26 +39,8 @@ public class CategoryController implements Serializable {
 
      public String save() {
 
-         Long branchId = addCategoryRequest.getBranchId();
-         String categoryName = addCategoryRequest.getName();
-
-         if(!categoryService.doesCategoryExist(categoryName,branchId)){
-            var section = categoryService.findBranchById(addCategoryRequest.getBranchId()).orElseThrow();
-            categoryService.save(new Category(addCategoryRequest.getId(), addCategoryRequest.getName(), section));
-
-             var branch = categoryService.findBranchById(branchId).orElseThrow();
-             categoryService.save(new Category(addCategoryRequest.getId(), categoryName, branch));
-
              return "/admin.xhtml?faces-redirect=true";
-         } else{
-             FacesContext.getCurrentInstance().getExternalContext().getFlash()
-                     .put("error-message", "Category exist in the Section");
-             return "/admin.xhtml?faces-redirect=true";
-         }
-     }
 
-     public List<Category> getAllCategory() {
-        return categoryService.findAll();
      }
 
 }
