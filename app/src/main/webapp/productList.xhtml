@@ -32,7 +32,6 @@
                              var="product"
                              value = "#{listProductController.getProductListForUser()}">
 
-<!--                        <c:forEach var="product" items="#{listProductController.getProductList()}">-->
                             <h:column>
                                 <f:facet name = "header">Id: </f:facet>
                                      #{product.id}
@@ -41,7 +40,6 @@
 
                     <h:column>
                         <f:facet name = "header">Title: </f:facet>
-<!--                        <h:inputHidden value="#{editProductController.getEditRequest().id}"/>-->
                         <h:outputLabel value="#{product.title}"
                                           rendered="#{not editProductController.editmode}"/>
                             <h:inputText id="title"
@@ -54,14 +52,6 @@
                             <h:column>
                                 <f:facet name = "header">Category:</f:facet>
                             #{product.category.name}
-<!--                                <h:selectOneMenu class="form-control" id="catlist"-->
-<!--                                                 value="#{editProductController.getEditRequest().getCategory().id}">-->
-<!--                                    <f:selectItems value="#{editProductController.getEditRequest().category}"-->
-<!--                                                   var="category"-->
-<!--                                                   itemValue="#{category.id}"-->
-<!--                                                   itemLabel="#{category.name}"/>-->
-<!--                                </h:selectOneMenu>-->
-<!--                                <h:inputText id="category" value="#{product.category.name}" />-->
                             </h:column>
 
                             <h:column>
