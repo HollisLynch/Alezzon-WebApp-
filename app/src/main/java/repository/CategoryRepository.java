@@ -14,9 +14,9 @@ import java.util.Optional;
 
 @ApplicationScoped
 public class CategoryRepository {
+
     @PersistenceContext
     EntityManager em;
-
 
     @Transactional
     public void save(Category category) {
@@ -41,7 +41,7 @@ public class CategoryRepository {
     @Transactional
     public Optional<Category> findCategoryById(Long categoryId) {
         var category = em.find(Category.class, categoryId);
-        return Optional.ofNullable(category);         //TODO
+        return Optional.ofNullable(category);
     }
 
     @Transactional
@@ -54,12 +54,10 @@ public class CategoryRepository {
 
 
     @Transactional
-    public  Optional<Branch> getBranchFromCategory(Long categoryId){
+    public Optional<Branch> getBranchFromCategory(Long categoryId){
         var branch =  em.createQuery("select s from Branch s where s.id = (select c.branch.id from Category c where c.id = :categoryId)", Branch.class)
                 .setParameter("categoryId", categoryId)
                 .getSingleResult();
         return Optional.ofNullable(branch);
-
-
     }
 }

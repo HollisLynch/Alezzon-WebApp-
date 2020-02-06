@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS product_parametr
 (
     product_id  INT,
     parametr_id INT,
-    value        VARCHAR,
+    value       VARCHAR,
 
     PRIMARY KEY (product_id, parametr_id),
     FOREIGN KEY (product_id) REFERENCES product(id),

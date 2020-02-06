@@ -1,12 +1,12 @@
 package controller;
 
+import model.Branch;
 import repository.BranchRepository;
 import request.BranchRequest;
-
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
+import java.util.List;
 
 @Named
 @RequestScoped
@@ -15,27 +15,34 @@ public class BranchController{
     @Inject
     BranchRepository branchRepository;
 
-    private BranchRequest branchRequest;
-
     @Inject
     private Retriever retriever;
 
-    public BranchRequest getEditBranchRequest() {
+    private BranchRequest branchRequest;
+
+    public BranchRequest getAddRequest() {
         if (branchRequest == null) {
-            branchRequest = createEditBranchRequest();
+            branchRequest = createBranchRequest();
         }
         return branchRequest;
     }
 
-    private BranchRequest createEditBranchRequest() {
-        return null;
+    private BranchRequest createBranchRequest() {
+        BranchRequest br = new BranchRequest();
+        return br;
     }
 
     public String save() {
 
-
+        Branch br = new Branch(branchRequest.getName());
+        branchRepository.save(br);
         return "/admin.xhtml?faces-redirect=true";
 
+    }
+
+    public List<Branch> getBranchList() {
+
+        return branchRepository.findAll();
     }
 
 }

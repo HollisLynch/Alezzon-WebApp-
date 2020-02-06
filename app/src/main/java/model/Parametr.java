@@ -11,11 +11,15 @@ public class Parametr {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(nullable = false)
     private String value;
 
     @OneToMany
     @JoinColumn(name = "parametr_id")
     private Collection<ProductParametr> parametrs;
+
+
+
 
     public Collection<ProductParametr> getParametrs() {
         return parametrs;

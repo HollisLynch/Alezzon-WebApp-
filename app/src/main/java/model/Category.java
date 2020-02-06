@@ -1,5 +1,7 @@
 package model;
 
+import request.CategoryRequest;
+
 import javax.persistence.*;
 import java.util.Optional;
 
@@ -15,15 +17,23 @@ public class Category {
     @JoinColumn(name = "section_id")
     private Branch branch;
 
+    @Column(nullable = false)
     private String name;
 
     public Category() {
     }
 
-    public Category(Long id, String name, Branch branch) {
+    public Category(CategoryRequest cr) {
+        this.branch = cr.getBranchId();
+        this.name = cr.getName();
+    }
+
+    public Category(String name, Branch branch) {
         this.branch = branch;
         this.name = name;
-        this.id = id;
+    }
+    public Category(String name) {
+        this.name = name;
     }
 
 

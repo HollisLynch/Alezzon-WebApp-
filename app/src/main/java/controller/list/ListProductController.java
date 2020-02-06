@@ -45,8 +45,10 @@ public class ListProductController {
     }
 
     public List<Product> getProductListForUser() {
-        Long ownerId = retriever.getLongUserId("id");
-        return productRepository.getProductListByOwnerId(ownerId);
+
+            Long ownerId = retriever.getLongUserId("id");
+            return productRepository.getProductListByOwnerId(ownerId);
+
     }
 
     public Product getProduct() {

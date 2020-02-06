@@ -2,15 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
 
 
 
     <h:head>
-        <title>Edit Branch</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Add Branch</title>
 
 
     </h:head>
@@ -24,14 +25,14 @@
                         <h:outputLabel value="Add branch" />
                     </div>
 
-                    <h:inputHidden value="#{branchController.editBranchRequest.id}" />
+                    <h:inputHidden value="#{branchController.getAddRequest().id}" />
                     <div class="wrap-login100" align="center">
                         <h:outputLabel for="name" value = "Name"/>
-                        <h:inputText id="name" value="#{branchController.editBranchRequest.name}" class="form-control"/>
+                        <h:inputText id="name" required="true" value="#{branchController.getAddRequest().name}" class="form-control"/>
                     </div>
 
                     <div class="wrap-login100" align="center">
-                        <h:commandButton value="Save" action="#{branchController.save}" class="login100-form-btn"/>
+                        <h:commandButton value="Save" action="#{branchController.save()}" class="login100-form-btn"/>
                     </div>
 
                 </h:form>

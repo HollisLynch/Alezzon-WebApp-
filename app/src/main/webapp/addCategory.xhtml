@@ -2,53 +2,62 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
 
 
 
     <h:head>
-        <title>Edit Category</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+        <title>Add Category</title>
 
 
     </h:head>
 
     <h:body>
-
         <ui:composition template="template.xhtml">
             <ui:define name="content">
-
                 <h:form>
 
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel value="Edit category"/>
+                        <h:outputLabel value="Add Category" />
                     </div>
 
+                    <h:inputHidden value="#{categoryController.getAddRequest().id}" />
                     <div class="wrap-login100" align="center">
                         <h:outputLabel for="name" value = "Name"/>
                         <h:inputText id="name" value="#{categoryController.getAddRequest().name}" class="form-control"/>
                     </div>
 
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel value = "Branch"/>
+                        <h:outputLabel value = "Branch: "/>
                         <h:selectOneMenu value="#{categoryController.getAddRequest().branchId}" >
-                            <f:selectItems value="#{listBranchController.branchList}" var="branch" itemLabel="#{branch.name}" itemValue="#{branch.id}"/>
+                            <f:selectItems value="#{categoryController.getBranchList()}" var="branch" itemLabel="#{branch.name}" itemValue="#{branch.id}"/>
                         </h:selectOneMenu>
                     </div>
 
 
-                    <div class="wrap-login100" align="center">
-                        <h:commandButton value="Save" action="#{categoryController.save}" class="login100-form-btn"/>
-                    </div>
+
+                    <h:commandButton value="Save" action="#{categoryController.saveCategory()}" class="login100-form-btn">
+                    <f:ajax execute="@form"/>
+                    </h:commandButton>
+
+
+
                 </h:form>
 
             </ui:define>
         </ui:composition>
-
     </h:body>
 </f:view>
 </html>
+
+
+
+
+
+
+
 

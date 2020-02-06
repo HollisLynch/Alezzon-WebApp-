@@ -14,6 +14,11 @@ public class CategoryRequest {
         this.branchId = branchId;
     }
 
+    public CategoryRequest(String name, Branch branchId) {
+        this.name = name;
+        this.branchId = branchId;
+    }
+
     public Long getId() {
         return id;
     }

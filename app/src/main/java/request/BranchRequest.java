@@ -9,6 +9,10 @@ public class BranchRequest {
         this.name = name;
     }
 
+    public BranchRequest(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

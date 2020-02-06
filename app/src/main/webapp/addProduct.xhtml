@@ -15,7 +15,7 @@
             <h:outputLabel for="categorylist">Category to select</h:outputLabel>
             <h:selectOneMenu class="form-control" id="categorylist"
                              value="#{productController.getAddRequest().categoryId}">
-                <f:selectItems value="#{listCategoryController.getCategoryList()}" var="category"
+                <f:selectItems value="#{categoryController.getCategoryList()}" var="category"
                                itemValue="#{category.id}"
                                itemLabel="#{category.name}"/>
             </h:selectOneMenu>

@@ -10,12 +10,24 @@ public class User  {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String username;
+
+    @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String birth;
+
+    @Column(nullable = false)
     private String role;
+
 
     public User(String name, String username, String password, String email, String birth, String role) {
         this.name = name;

@@ -14,7 +14,7 @@ public class Picture {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @Column(length = 1500)
+    @Column(length = 1500, nullable = false)
     private String link;
 
     public Picture(Product product, String link) {

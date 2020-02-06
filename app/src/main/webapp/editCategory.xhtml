@@ -17,7 +17,6 @@
 
     <h:head>
         <title>Edit Category</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
 
@@ -44,7 +43,7 @@
                     <div class="wrap-login100" align="center">
                         <h:outputLabel value = "Branch"/>
                         <h:selectOneMenu value="#{categoryController.getAddRequest().branchId}" class="input100">
-                            <f:selectItems value="#{listBranchController.branchList}" var="branch" itemLabel="#{branch.name}" itemValue="#{branch.id}"/>
+                            <f:selectItems value="#{branchController.branchList}" var="branch" itemLabel="#{branch.name}" itemValue="#{branch.id}"/>
                         </h:selectOneMenu>
                     </div>
 

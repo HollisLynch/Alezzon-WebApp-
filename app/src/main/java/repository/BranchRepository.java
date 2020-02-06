@@ -5,6 +5,7 @@ import model.Branch;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -16,13 +17,24 @@ public class BranchRepository {
     @PersistenceContext
     EntityManager em;
 
-
     @Transactional
-    public void save(Branch section) {
-        if (section.getId() == null) {
-            em.persist(section);
-        } else {
-            em.merge(section);
+    public void save(Branch branch) {
+
+        if (branch.getId() == null) {
+            try {
+                em.persist(branch);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        else {
+
+            try {
+                em.merge(branch);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

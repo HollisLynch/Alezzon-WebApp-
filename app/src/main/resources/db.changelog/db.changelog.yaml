@@ -27,6 +27,18 @@ databaseChangeLog:
         relativeToChangelogFile: true
         splitStatements: false
         path: d.sql
-
-
+  - changeSet:
+      id: setnotnull
+      author: Daryna Kovyrina
+      sqlFile:
+        relativeToChangelogFile: true
+        splitStatements: false
+        path: setnotnull.sql
+  - changeSet:
+      id: h
+      author: Daryna Kovyrina
+      sqlFile:
+        relativeToChangelogFile: true
+        splitStatements: false
+        path: h.sql
 
