@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20191021_init
+      author: Daryna Kovyrina
+      sqlFile:
+        relativeToChangelogFile: true
+        splitStatements: false
+        path: 20191021_init.sql
+  - changeSet:
+      id: auction
+      author: Daryna Kovyrina
+      sqlFile:
+        relativeToChangelogFile: true
+        splitStatements: false
+        path: auction.sql
+  - changeSet:
+      id: 230120
+      author: Daryna Kovyrina
+      sqlFile:
+        relativeToChangelogFile: true
+        splitStatements: false
+        path: 230120.sql
+  - changeSet:
+      id: d
+      author: Daryna Kovyrina
+      sqlFile:
+        relativeToChangelogFile: true
+        splitStatements: false
+        path: d.sql
+  - changeSet:
+      id: setnotnull
+      author: Daryna Kovyrina
+      sqlFile:
+        relativeToChangelogFile: true
+        splitStatements: false
+        path: setnotnull.sql
+  - changeSet:
+      id: h
+      author: Daryna Kovyrina
+      sqlFile:
+        relativeToChangelogFile: true
+        splitStatements: false
+        path: h.sql
+

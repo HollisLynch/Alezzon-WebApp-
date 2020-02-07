@@ -5,7 +5,6 @@ import model.Branch;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -45,9 +44,9 @@ public class BranchRepository {
     }
 
     @Transactional
-    public Optional<Branch> findBranchById(Long sectionId) {
+    public Branch findBranchById(Long sectionId) {
         var section = em.find(Branch.class, sectionId);
-        return Optional.ofNullable(section);
+        return section;
     }
 
 

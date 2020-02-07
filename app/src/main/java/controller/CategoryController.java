@@ -1,24 +1,22 @@
 package controller;
 
+import controller.converters.BranchConverter;
+import controller.converters.Retriever;
 import model.Branch;
 import model.Category;
 import repository.BranchRepository;
 import repository.CategoryRepository;
 import request.CategoryRequest;
 
-import javax.annotation.ManagedBean;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.FacesException;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 
 
 @Named
-@RequestScoped
-@ManagedBean("categoryController")
+@ViewScoped
 public class CategoryController implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,6 +32,18 @@ public class CategoryController implements Serializable {
 
     private CategoryRequest categoryRequest;
 
+    private BranchConverter branchConverter;
+
+    public BranchConverter branchConverter() {
+        branchConverter = createBranchConverter();
+        return branchConverter;
+    }
+
+    private BranchConverter createBranchConverter() {
+        BranchConverter br = new BranchConverter();
+        return br;
+    }
+
     public CategoryRequest getAddRequest() {
         if (categoryRequest == null) {
             categoryRequest = createRequest();
@@ -47,21 +57,21 @@ public class CategoryController implements Serializable {
     }
 
     public String saveCategory() {
-        try
-        {
-            CategoryRequest cr = new CategoryRequest(getAddRequest().getName(), getAddRequest().getBranchId());
 
-            Category cat = new Category(cr);
+            Long branchId = categoryRequest.getBranchId();
+
+            Branch branch = branchRepository.findBranchById(branchId);
+
+            String name = categoryRequest.getName();
+
+            Category cat = new Category();
+
+            cat.setName(name);
+            cat.setBranch(branch);
+
             categoryRepository.save(cat);
-            return "/addBranch.xhtml?faces-redirect=true";
 
-        } catch(Exception e)
-        {
-
-            throw new FacesException(e);
-
-
-        }
+            return "/addParameter.xhtml?faces-redirect=true";
 
     }
 

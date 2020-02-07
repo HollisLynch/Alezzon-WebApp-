@@ -24,7 +24,7 @@ public class Category {
     }
 
     public Category(CategoryRequest cr) {
-        this.branch = cr.getBranchId();
+        this.branch =new Branch();// cr.getBranchId();
         this.name = cr.getName();
     }
 

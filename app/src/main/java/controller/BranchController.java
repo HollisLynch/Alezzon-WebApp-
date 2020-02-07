@@ -1,5 +1,6 @@
 package controller;
 
+import controller.converters.Retriever;
 import model.Branch;
 import repository.BranchRepository;
 import request.BranchRequest;
@@ -36,7 +37,7 @@ public class BranchController{
 
         Branch br = new Branch(branchRequest.getName());
         branchRepository.save(br);
-        return "/admin.xhtml?faces-redirect=true";
+        return "/addCategory.xhtml?faces-redirect=true";
 
     }
 

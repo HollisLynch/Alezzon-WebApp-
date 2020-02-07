@@ -1,6 +1,6 @@
 package controller.edit;
 
-import controller.Retriever;
+import controller.converters.Retriever;
 import request.PictureRequest;
 import request.edit.EditProductRequest;
 import service.EditProductService;

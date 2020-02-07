@@ -1,6 +1,6 @@
 package controller.list;
 
-import controller.Retriever;
+import controller.converters.Retriever;
 import model.Picture;
 import model.Product;
 import model.ProductParametr;
@@ -12,7 +12,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
-import java.util.Optional;
 
 @Named
 @RequestScoped

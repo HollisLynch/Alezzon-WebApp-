@@ -5,9 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <f:view>
-
 
 
     <h:head>
@@ -28,20 +28,22 @@
                     <h:inputHidden value="#{categoryController.getAddRequest().id}" />
                     <div class="wrap-login100" align="center">
                         <h:outputLabel for="name" value = "Name"/>
-                        <h:inputText id="name" value="#{categoryController.getAddRequest().name}" class="form-control"/>
+                        <h:inputText id="name" value="#{categoryController.getAddRequest().name}" class="form-control" immediate="true"/>
                     </div>
 
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel value = "Branch: "/>
-                        <h:selectOneMenu value="#{categoryController.getAddRequest().branchId}" >
-                            <f:selectItems value="#{categoryController.getBranchList()}" var="branch" itemLabel="#{branch.name}" itemValue="#{branch.id}"/>
+                        <h:outputLabel for="branch" value = "Branch: "/>
+                        <h:selectOneMenu id = "branch" value="#{categoryController.getAddRequest().branchId}" >
+                            <f:selectItems value="#{categoryController.getBranchList()}"
+                                           var="branch"
+                                           itemLabel="#{branch.name}"
+                                           itemValue="#{branch.id}"/>
                         </h:selectOneMenu>
                     </div>
 
 
 
-                    <h:commandButton value="Save" action="#{categoryController.saveCategory()}" class="login100-form-btn">
-                    <f:ajax execute="@form"/>
+                    <h:commandButton value="Save"  action="#{categoryController.saveCategory}" class="login100-form-btn">
                     </h:commandButton>
 
 
@@ -53,11 +55,3 @@
     </h:body>
 </f:view>
 </html>
-
-
-
-
-
-
-
-

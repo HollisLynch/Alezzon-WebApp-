@@ -9,11 +9,15 @@
 
 <h:body>
 <ui:composition template="template.xhtml">
+
+
     <ui:define name="content">
 
+        <div class="card border-primary mb-3" style="max-width: 20rem; text-align:center" >
         <h:form style="display:block; text-align:center">
 
-            <h:panelGroup>
+
+
                 <div class="form-group">
                     <h:outputLabel value="Username: "/>
 
@@ -26,11 +30,9 @@
 
                     <h:message for="username" style="color: red;"/>
                 </div>
-            </h:panelGroup>
 
 
 
-            <h:panelGroup>
                 <div class="form-group">
                     <h:outputLabel value="Password: "/>
 
@@ -42,23 +44,26 @@
 
                     <h:message for="password" style="color: red;" />
                 </div>
-            </h:panelGroup>
 
 
 
             <h:commandButton value="Login" class="btn btn-primary" action="#{loginController.login}" />
 
-
             <div>
-            <button onclick="location.href='registration.xhtml'" type="button" class="btn btn-outline-primary">
+
+            <button onclick="location.href='registration.xhtml'" type="button" >
                 Registration</button>
             </div>
 
-        </h:form>
 
+
+
+        </h:form>
+        </div>
 
 
     </ui:define>
+
 </ui:composition>
 
     
