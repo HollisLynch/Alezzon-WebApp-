@@ -13,7 +13,6 @@
 
     <ui:define name="content">
 
-        <div class="card border-primary mb-3" style="max-width: 20rem; text-align:center" >
         <h:form style="display:block; text-align:center">
 
 
@@ -47,19 +46,21 @@
 
 
 
-            <h:commandButton value="Login" class="btn btn-primary" action="#{loginController.login}" />
+            <h:commandButton value="Login" class="btn btn-outline-primary" action="#{loginController.login}" />
 
-            <div>
+            <h:button value="Registration" class="btn btn-outline-primary" outcome="registration.xhtml" />
 
-            <button onclick="location.href='registration.xhtml'" type="button" >
-                Registration</button>
-            </div>
+
+            <!--            <div>-->
+
+<!--            <button onclick="location.href='registration.xhtml'" type="button" >-->
+<!--                Registration</button>-->
+<!--            </div>-->
 
 
 
 
         </h:form>
-        </div>
 
 
     </ui:define>

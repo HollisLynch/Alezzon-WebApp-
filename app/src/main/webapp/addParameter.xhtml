@@ -6,80 +6,38 @@
       xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
 
-
-
-
     <f:metadata>
         <f:viewParam name="paramId" value="#{paramController.getAddParamRequest().id}"/>
-        <f:viewParam name="value" value="#{paramController.getAddParamRequest().value}"/>
     </f:metadata>
-
-    <h:head>
-        <title>Edit Branch</title>
-
-
-    </h:head>
 
     <h:body>
         <ui:composition template="template.xhtml">
             <ui:define name="content">
 
                 <h:form class="form">
+
+                    <h:inputHidden value="#{paramController.getAddParamRequest().id}" />
+                    <f:param name="paramId" value="#{paramController.getAddParamRequest().id}" />
+
                     <div class="wrap-login100" align="center">
                         <h:outputLabel for="parameter">Name of parameter</h:outputLabel>
                         <h:inputText id="parameter"
                                      value="#{paramController.getAddParamRequest().value}"
                                      class="form-control" required="true">
                         </h:inputText>
+
                         <div class="wrap-login100" align="center">
                             <h:commandButton value="Save"
                                              action="#{paramController.save()}"
                                              class="btn btn-outline-primary"/>
                         </div>
+                        <h:button value="Menu" class="btn btn-outline-primary" outcome="admin.xhtml" />
+
+
                     </div>
 
                 </h:form>
 
-                <h:form>
-
-                    <div class="wrap-login100" align="center">
-                        <h:outputLabel value="Add parameter" style="align-self: center; font-size: large"/>
-                    </div>
-
-                    <div class="wrap-login100" align="center">
-                        <h:outputLabel for="productlist">Product:</h:outputLabel>
-                        <h:selectOneMenu class="form-control" id="productlist"
-                                         value="#{paramController.getAddProductParameterRequest().product}">
-                            <f:selectItems value="#{paramController.getProductListByOwnerId()}"
-                                           var="product"
-                                           itemValue="#{product.id}"
-                                           itemLabel="#{product.title}"/>
-                        </h:selectOneMenu>
-                    </div>
-
-                    <div class="wrap-login100" align="center">
-                        <h:outputLabel for="paramlist">Parameter:</h:outputLabel>
-                        <h:selectOneMenu class="form-control" id="paramlist"
-                                         value="#{paramController.getAddProductParameterRequest().parameter}">
-                            <f:selectItems value="#{paramController.getParamList()}"
-                                           var="parameter"
-                                           itemValue="#{parameter.id}"
-                                           itemLabel="#{parameter.value}"/>
-                        </h:selectOneMenu>
-                    </div>
-
-
-
-                    <div class="wrap-login100" align="center">
-                        <h:outputLabel for="value" value = "Value"/>
-                        <h:inputText id="value" value="#{paramController.getAddProductParameterRequest().value}" class="form-control"/>
-                    </div>
-
-                    <div class="wrap-login100" align="center">
-                        <h:commandButton value="Save" action="#{paramController.saveProductParam()}" class="btn btn-outline-primary"/>
-                    </div>
-
-                </h:form>
 
             </ui:define>
         </ui:composition>

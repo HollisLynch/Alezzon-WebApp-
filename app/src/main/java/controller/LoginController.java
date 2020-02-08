@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 @Named
 @RequestScoped
 public class LoginController {
+
     @Inject
     private LoginRequest loginRequest;
 
@@ -28,8 +29,6 @@ public class LoginController {
     private HttpServletRequest request;
     @Inject
     UserRepository userRepository;
-
-
 
     public String login() {
 

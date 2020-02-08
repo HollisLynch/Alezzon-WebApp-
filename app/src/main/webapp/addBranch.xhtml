@@ -7,15 +7,6 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-
-
-
-    <h:head>
-        <title>Add Branch</title>
-
-
-    </h:head>
-
     <h:body>
         <ui:composition template="template.xhtml">
         <ui:define name="content">
@@ -33,6 +24,8 @@
 
                     <div class="wrap-login100" align="center">
                         <h:commandButton value="Save" action="#{branchController.save()}" class="login100-form-btn"/>
+                        <h:button value="Menu" class="btn btn-outline-primary" outcome="admin.xhtml" />
+
                     </div>
 
                 </h:form>

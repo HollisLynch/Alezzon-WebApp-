@@ -10,9 +10,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "product")
-
-@ManagedBean("product")
-@SessionScoped
 public class Product implements Serializable{
 
     private static final long serialVersionUID = 1L;

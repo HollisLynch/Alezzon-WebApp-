@@ -2,6 +2,7 @@ package repository;
 
 import model.Category;
 import model.Product;
+import model.ProductParametr;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
@@ -29,6 +30,11 @@ public class ProductRepository {
             em.persist(product);
         else
             em.merge(product);
+    }
+
+    @Transactional
+    public void saveParametersToProduct(ProductParametr productParametr) {
+            em.persist(productParametr);
     }
 
     @Transactional
@@ -68,4 +74,6 @@ public class ProductRepository {
     public List<Product> findAll(){
         return em.createQuery("from Product", Product.class).getResultList();
     }
+
+
 }

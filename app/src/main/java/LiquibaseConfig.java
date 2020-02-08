@@ -31,10 +31,11 @@ public class LiquibaseConfig {
         return new HikariDataSource(config);
     }
 
+
     @Produces
     @LiquibaseType
     public ResourceAccessor create() {
-        return new ClassLoaderResourceAccessor(getClass().getClassLoader());
+            return new ClassLoaderResourceAccessor(getClass().getClassLoader());
     }
 
 }

@@ -27,22 +27,8 @@ public class CategoryController implements Serializable {
     @Inject
     BranchRepository branchRepository;
 
-    @Inject
-    private Retriever retriever;
 
     private CategoryRequest categoryRequest;
-
-    private BranchConverter branchConverter;
-
-    public BranchConverter branchConverter() {
-        branchConverter = createBranchConverter();
-        return branchConverter;
-    }
-
-    private BranchConverter createBranchConverter() {
-        BranchConverter br = new BranchConverter();
-        return br;
-    }
 
     public CategoryRequest getAddRequest() {
         if (categoryRequest == null) {

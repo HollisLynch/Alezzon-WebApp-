@@ -31,9 +31,9 @@ public class ParamRepository {
 
 
     @Transactional
-    public Optional<Parametr> findParamById(Long paramId) {
-        var param = em.find(Parametr.class, paramId);
-        return Optional.ofNullable(param);
+    public Parametr findParamById(Long paramId) {
+        Parametr param = em.find(Parametr.class, paramId);
+        return param;
     }
 
 

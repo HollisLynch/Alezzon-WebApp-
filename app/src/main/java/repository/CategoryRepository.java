@@ -39,9 +39,9 @@ public class CategoryRepository {
     }
 
     @Transactional
-    public Optional<Category> findCategoryById(Long categoryId) {
+    public Category findCategoryById(Long categoryId) {
         var category = em.find(Category.class, categoryId);
-        return Optional.ofNullable(category);
+        return category;
     }
 
     @Transactional

@@ -68,15 +68,14 @@
                 </div>
             </h:panelGroup>
 
-            <h:commandButton value="Submit" class="btn btn-outline-primary" action="#{userController.register}"/>
+            <h:commandButton value="Register" class="btn btn-outline-primary" action="#{userController.register}"/>
 
-                <button onclick="location.href='login.xhtml'"
-
-                    type="button">Login</button>
+                <h:button value="Go to Login" class="btn btn-outline-primary" outcome="login.xhtml" />
 
 
 
-</h:form>
+
+            </h:form>
         </ui:define>
     </ui:composition>
 

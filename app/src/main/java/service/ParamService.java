@@ -11,7 +11,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 import java.util.List;
-import java.util.Optional;
 
 @ApplicationScoped
 public class ParamService {
@@ -21,11 +20,13 @@ public class ParamService {
     @Inject
     private ParamRepository paramRepository;
 
+
     public List<Product> getProductListByOwnerId(Long ownerId) {
         return productRepository.getProductListByOwnerId(ownerId);
     }
 
-    public List<Parametr> getParamList() {
+
+    public List<Parametr> findAll() {
         return paramRepository.getParamList();
     }
 
@@ -41,7 +42,9 @@ public class ParamService {
         return productRepository.findProductById1(productId);
     }
 
-    public Optional<Parametr> findParamById(Long parameterId) {
+
+
+    public Parametr findParamById(Long parameterId) {
         return paramRepository.findParamById(parameterId);
     }
 
@@ -71,4 +74,7 @@ public class ParamService {
     }
 
 
+    public Parametr findParamByName(String name) {
+        return paramRepository.findParamByName(name);
+    }
 }

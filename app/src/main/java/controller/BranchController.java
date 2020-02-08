@@ -11,15 +11,13 @@ import java.util.List;
 
 @Named
 @RequestScoped
-public class BranchController{
+public class BranchController {
+
+    private BranchRequest branchRequest;
 
     @Inject
     BranchRepository branchRepository;
 
-    @Inject
-    private Retriever retriever;
-
-    private BranchRequest branchRequest;
 
     public BranchRequest getAddRequest() {
         if (branchRequest == null) {
@@ -38,6 +36,19 @@ public class BranchController{
         Branch br = new Branch(branchRequest.getName());
         branchRepository.save(br);
         return "/addCategory.xhtml?faces-redirect=true";
+
+    }
+
+    public String edit() {
+        Branch oldBranch = branchRepository.findBranchById(branchRequest.getId());
+        Long oldBranchId = oldBranch.getId();
+
+        Branch newBranch = new Branch();
+        newBranch.setId(oldBranchId);
+        newBranch.setName(branchRequest.getEditBranch());
+
+        branchRepository.save(newBranch);
+        return "/editBranch.xhtml?faces-redirect=true";
 
     }
 

@@ -19,8 +19,6 @@ public class Parametr {
     private Collection<ProductParametr> parametrs;
 
 
-
-
     public Collection<ProductParametr> getParametrs() {
         return parametrs;
     }

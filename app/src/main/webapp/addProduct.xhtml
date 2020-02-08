@@ -11,11 +11,16 @@
     <ui:define name="content">
 
     <h:form>
+
+        <h:inputHidden value="#{productController.getAddRequest().id}" />
+
         <div class="wrap-login100" align="center">
-            <h:outputLabel for="categorylist">Category to select</h:outputLabel>
-            <h:selectOneMenu class="form-control" id="categorylist"
+            <h:outputLabel for="categorylist">Category: </h:outputLabel>
+            <h:selectOneMenu class="form-control"
+                             id="categorylist"
                              value="#{productController.getAddRequest().categoryId}">
-                <f:selectItems value="#{categoryController.getCategoryList()}" var="category"
+                <f:selectItems value="#{categoryController.getCategoryList()}"
+                               var="category"
                                itemValue="#{category.id}"
                                itemLabel="#{category.name}"/>
             </h:selectOneMenu>
@@ -23,39 +28,69 @@
 
 
         <div class="wrap-login100" align="center">
-            <h:outputLabel for="title">Title</h:outputLabel>
+            <h:outputLabel for="title">Title: </h:outputLabel>
             <h:inputText id="title" value="#{productController.getAddRequest().title}"
-                         class="form-control" required="true"/>
+                         class="form-control"
+                         required="true"/>
         </div>
 
         <div class="wrap-login100" align="center">
-            <h:outputLabel for="description">Description</h:outputLabel>
+            <h:outputLabel for="description">Description: </h:outputLabel>
             <h:inputText id="description"
                          value="#{productController.getAddRequest().description}"
-                         class="form-control" required="true"/>
+                         class="form-control"
+                         required="true"/>
         </div>
 
         <div class="wrap-login100" align="center">
-            <h:outputLabel for="price">Price</h:outputLabel>
+            <h:outputLabel for="price">Price: </h:outputLabel>
             <h:inputText id="price" value="#{productController.getAddRequest().price}"
                          class="form-control">
-                <f:validateDoubleRange minimum="0.01" maximum="100000.99"/>
             </h:inputText>
                 </div>
 
         <div class="wrap-login100" align="center">
-            <h:outputLabel for="link">link of Photo to add to product</h:outputLabel>
-            <h:inputText id="link" value="#{pictureController.getAddPhotoRequest().link}"
-                         class="form-control" required="true">
-            </h:inputText>
-        </div>
-
-        <div class="wrap-login100" align="center">
-            <h:commandButton value="Add" action="#{productController.save()}"
+            <h:commandButton value="Save Product" action="#{productController.save()}"
                              class="btn btn-outline-primary"/>
+
+            <h:button value="Go To Menu" class="btn btn-outline-primary" outcome="admin.xhtml" />
         </div>
 
-                    </h:form>
+    </h:form>
+
+
+        <h:form>
+
+            <div class="wrap-login100" align="center">
+                <h:outputLabel for="paramlist">Parametr: </h:outputLabel>
+                <h:selectOneMenu class="form-control"
+                                 id="paramlist"
+                                 value="#{productController.getAddRequest().parameterId}">
+                    <f:selectItems value="#{paramController.getParamList()}"
+                                   var="parametr"
+                                   itemValue="#{parametr.id}"
+                                   itemLabel="#{parametr.value}"/>
+                </h:selectOneMenu>
+            </div>
+
+            <div class="wrap-login100" align="center">
+                <h:outputLabel for="value">Value: </h:outputLabel>
+                <h:inputText id="value" value="#{productController.getAddRequest().value}"
+                             class="form-control">
+                </h:inputText>
+            </div>
+
+            <div class="wrap-login100" align="center">
+            <h:commandButton value="Save Product" action="#{productController.save()}"
+                             class="btn btn-outline-primary"/>
+            </div>
+
+
+        </h:form>
+
+
+
+
     </ui:define>
     </ui:composition>
 </h:body>

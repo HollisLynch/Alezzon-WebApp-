@@ -3,6 +3,7 @@ package service;
 
 import model.Category;
 import model.Product;
+import model.ProductParametr;
 import repository.BranchRepository;
 import repository.CategoryRepository;
 import repository.ProductRepository;
@@ -34,8 +35,15 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public Optional<Category> findCategoryById(Long categoryId) {
+    public Category findCategoryById(Long categoryId) {
         return categoryRepository.findCategoryById(categoryId);
     }
 
+    public Product getProductById(Long productId) {
+        return productRepository.getProductById(productId);
+    }
+
+    public void saveParametersToProduct(ProductParametr productParametr) {
+        productRepository.saveParametersToProduct(productParametr);
+    }
 }

@@ -2,13 +2,20 @@ package request;
 
 import model.Parametr;
 
-public class ParamRequest {
+import java.io.Serializable;
+
+public class ParamRequest implements Serializable {
 
     private Long id;
     private String value;
 
-    public ParamRequest(Parametr param) {
+
+    public ParamRequest(Long id, String value) {
         this.id = id;
+        this.value = value;
+    }
+
+    public ParamRequest(String value) {
         this.value = value;
     }
 

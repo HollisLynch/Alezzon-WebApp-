@@ -1,48 +1,54 @@
 package controller;
 
 import controller.converters.Retriever;
+import model.Parametr;
+import repository.ParamRepository;
 import request.ParamRequest;
 import request.ProductParamRequest;
 import service.ParamService;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Optional;
 
 @Named
-@RequestScoped
-public class ParamController {
+@ViewScoped
+public class ParamController implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Inject
     ParamService paramService;
 
-    private ParamRequest addParamRequest;
-
-    private ProductParamRequest productParamRequest;
-
-    @Inject
-    private Retriever retriever;
+    private ParamRequest paramRequest;
 
     public ParamRequest getAddParamRequest() {
-        if (addParamRequest == null) {
-            addParamRequest = createAddParamRequest();
+        if (paramRequest == null) {
+            paramRequest = createAddParamRequest();
         }
-        return addParamRequest;
+        return paramRequest;
     }
 
     private ParamRequest createAddParamRequest() {
-        return null;
+        ParamRequest paramRequest = new ParamRequest();
+        return paramRequest;
     }
 
-    public ProductParamRequest getAddProductParameterRequest() {
-        if (productParamRequest == null) {
-            productParamRequest = new ProductParamRequest();
-        }
-        return productParamRequest;
-    }
+
 
     public String save() {
 
+
+            String name = paramRequest.getValue();
+
+            Parametr p = new Parametr();
+
+            p.setValue(name);
+            paramService.save(p);
 
             return "/addParameter.xhtml?faces-redirect=true";
 
@@ -55,6 +61,11 @@ public class ParamController {
 
 
 
+    }
+
+    public List<Parametr> getParamList() {
+
+        return paramService.findAll();
     }
 
 

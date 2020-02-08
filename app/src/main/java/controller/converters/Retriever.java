@@ -1,6 +1,7 @@
 package controller.converters;
 
 import model.Branch;
+import model.Parametr;
 import request.CategoryRequest;
 
 import javax.el.ValueExpression;
@@ -27,6 +28,8 @@ public class Retriever{
         return Long.parseLong(value);
     }
 
+
+
     public Long getLongUserId(String str) {
         return (Long)request.getSession().getAttribute(str);
     }
@@ -34,6 +37,11 @@ public class Retriever{
     public Long getAsLong(Object value) {
         return ((CategoryRequest)value).getId();
     }
+
+    public String getAsString(Object value) {
+        return String.valueOf(((Parametr)value).getId());
+    }
+
 
 //    public Branch getAsObject(Long o) {
 //

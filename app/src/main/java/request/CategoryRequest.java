@@ -13,20 +13,6 @@ public class CategoryRequest implements Serializable {
     private String name;
     private Long branchId;
 
-    private BranchRepository br;
-
-    List<Branch> branches;
-
-    public List<Branch> getBranches() {
-        return br.findAll();
-    }
-
-    public void setBranches(List<Branch> branches) {
-        this.branches = branches;
-    }
-
-
-
 
     public CategoryRequest(String name, Long branchId) {
         this.name = name;
@@ -60,16 +46,7 @@ public class CategoryRequest implements Serializable {
     public CategoryRequest() {
     }
 
-    public Branch getBranchId(Long valueOf) {
-        if (id == null){
-            throw new IllegalArgumentException("no id provided");
-        }
-        for (Branch branch : getBranches()){
-            if (id.equals(branch.getId())){
-                return branch;
-            }
-        }
-        return null;
-    }
+
+
 
 }

@@ -8,14 +8,6 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <f:view>
-
-
-    <h:head>
-        <title>Add Category</title>
-
-
-    </h:head>
-
     <h:body>
         <ui:composition template="template.xhtml">
             <ui:define name="content">
@@ -45,6 +37,7 @@
 
                     <h:commandButton value="Save"  action="#{categoryController.saveCategory}" class="login100-form-btn">
                     </h:commandButton>
+                    <h:button value="Menu" class="btn btn-outline-primary" outcome="admin.xhtml" />
 
 
 

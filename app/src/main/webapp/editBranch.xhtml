@@ -14,12 +14,6 @@
         <f:viewParam name="name" value="#{branchController.addRequest.name}"/>
     </f:metadata>
 
-    <h:head>
-        <title>Edit Branch</title>
-
-
-    </h:head>
-
     <h:body>
         <ui:composition template="template.xhtml">
             <ui:define name="content">
@@ -32,12 +26,22 @@
 
 
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel for="name" value = "Name"/>
-                        <h:inputText id="name" value="#{branchController.addRequest.name}" class="input100"/>
+                        <h:outputLabel for="branch" value = "Branch: "/>
+                        <h:selectOneMenu id = "branch" value="#{branchController.getAddRequest().id}" >
+                            <f:selectItems value="#{categoryController.getBranchList()}"
+                                           var="branch"
+                                           itemLabel="#{branch.name}"
+                                           itemValue="#{branch.id}"/>
+                        </h:selectOneMenu>
                     </div>
 
                     <div class="wrap-login100" align="center">
-                        <h:commandButton value="Save" action="#{branchController.save}" class="btn btn-outline-primary"/>
+                        <h:outputLabel for="name" value = "Name"/>
+                        <h:inputText id="name" value="#{branchController.addRequest.editBranch}" class="input100"/>
+                    </div>
+
+                    <div class="wrap-login100" align="center">
+                        <h:commandButton value="Save" action="#{branchController.edit}" class="btn btn-outline-primary"/>
                     </div>
 
                 </h:form>

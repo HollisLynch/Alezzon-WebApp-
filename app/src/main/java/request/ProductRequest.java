@@ -1,9 +1,11 @@
-package request.add;
+package request;
 
 import model.ProductParametr;
 
+import java.util.List;
 
-public class AddProductRequest {
+
+public class ProductRequest {
 
     private Long id;
     private Long categoryId;
@@ -12,12 +14,15 @@ public class AddProductRequest {
     private String title;
     private String description;
     private String pictures;
-    private ProductParametr parameters;
+    private List<ProductParametr> parameters;
+    private String value;
 
     private double price;
 
+    private Long parameterId;
 
-    public AddProductRequest() {
+
+    public ProductRequest() {
     }
 
 
@@ -70,19 +75,35 @@ public class AddProductRequest {
         this.pictures = pictures;
     }
 
-    public ProductParametr getParameters() {
-        return parameters;
-    }
-
-    public void setParameters(ProductParametr parameters) {
-        this.parameters = parameters;
-    }
-
     public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public List<ProductParametr> getParameters() {
+        return parameters;
+    }
+
+    public void setParameters(List<ProductParametr> parameters) {
+        this.parameters = parameters;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public Long getParameterId() {
+        return parameterId;
+    }
+
+    public void setParameterId(Long parameterId) {
+        this.parameterId = parameterId;
     }
 }

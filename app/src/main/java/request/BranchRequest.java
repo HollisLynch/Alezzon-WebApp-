@@ -3,6 +3,7 @@ package request;
 public class BranchRequest {
     private Long id;
     private String name;
+    private String editBranch;
 
     public BranchRequest(Long id, String name) {
         this.id = id;
@@ -30,5 +31,13 @@ public class BranchRequest {
     }
 
     public BranchRequest() {
+    }
+
+    public String getEditBranch() {
+        return editBranch;
+    }
+
+    public void setEditBranch(String editBranch) {
+        this.editBranch = editBranch;
     }
 }

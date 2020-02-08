@@ -20,20 +20,10 @@ public class BranchRepository {
     public void save(Branch branch) {
 
         if (branch.getId() == null) {
-            try {
                 em.persist(branch);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
         }
-
         else {
-
-            try {
                 em.merge(branch);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
         }
     }
 
