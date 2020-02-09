@@ -152,10 +152,10 @@ public class ProductController implements Serializable {
 
        Long id = Long.parseLong(idStr);
        Product product=productService.getProductById(id);
-       productRequest.setId(product.getId());
-       productRequest.setDescription(product.getDescription());
-       productRequest.setTitle(product.getTitle());
-       productRequest.setPrice(product.getPrice());
+        editProductRequest.setId(product.getId());
+        editProductRequest.setDescription(product.getDescription());
+        editProductRequest.setTitle(product.getTitle());
+        editProductRequest.setPrice(product.getPrice());
 
 
         return "/editProduct.xhtml?faces-redirect=true";

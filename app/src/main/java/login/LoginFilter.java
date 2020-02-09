@@ -18,12 +18,16 @@ public class LoginFilter extends HttpFilter {
 
 
             chain.doFilter(req, res);
-        } else if (isResourceReq(req) || isAdminSite(req) || isAdminLogged(req)) {
+        }
+        else if (isResourceReq(req) || isAdminSite(req) || isAdminLogged(req)) {
 
-            
+            if (req.getRequestURI().equals(req.getContextPath() + "/welcome.xhtml")) {
+                res.sendRedirect(getServletContext().getContextPath() + "/admin.xhtml");
+            }
 
             chain.doFilter(req, res);
         }
+
 
         else {
             res.sendRedirect(getServletContext().getContextPath() + "/login.xhtml");
@@ -41,15 +45,10 @@ public class LoginFilter extends HttpFilter {
     private boolean isSiteAllowed(HttpServletRequest req) {
 
         return req.getRequestURI().equals(req.getContextPath() + "/login.xhtml") ||
-                req.getRequestURI().equals(req.getContextPath() + "/registration.xhtml") ||
-                req.getRequestURI().equals(req.getContextPath() + "/admin.xhtml")  ||
-                req.getRequestURI().equals(req.getContextPath() + "/addCategory.xhtml") ||
-                req.getRequestURI().equals(req.getContextPath() + "/editCategory.xhtml") ||
-                req.getRequestURI().equals(req.getContextPath() + "/editProduct.xhtml") ||
-                req.getRequestURI().equals(req.getContextPath() + "/addBranch.xhtml")  ||
-                req.getRequestURI().equals(req.getContextPath() + "/editBranch.xhtml") ||
-                req.getRequestURI().equals(req.getContextPath() + "/addParameter.xhtml");
+                req.getRequestURI().equals(req.getContextPath() + "/registration.xhtml");
     }
+
+
 
     private boolean isUserLogged(HttpServletRequest req) {
         var session = req.getSession(false);
@@ -59,8 +58,8 @@ public class LoginFilter extends HttpFilter {
     private boolean isAdminSite(HttpServletRequest req) {
 
         return req.getRequestURI().equals(req.getContextPath() + "/admin.xhtml") ||
-                req.getRequestURI().contains("admin") ||
-                req.getRequestURI().contains("edit");
+                req.getRequestURI().contains("add") ||
+                req.getRequestURI().contains("edit")  ;
     }
 
     private boolean isAdminLogged(HttpServletRequest req) {

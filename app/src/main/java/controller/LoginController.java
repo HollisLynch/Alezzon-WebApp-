@@ -7,11 +7,13 @@ import request.LoginRequest;
 
 import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -27,6 +29,7 @@ public class LoginController {
 
     @Inject
     private HttpServletRequest request;
+
     @Inject
     UserRepository userRepository;
 
@@ -79,6 +82,9 @@ public class LoginController {
         else
             return true;
     }
+
+
+
 
 
 
