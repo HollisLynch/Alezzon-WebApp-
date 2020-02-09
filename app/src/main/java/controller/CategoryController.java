@@ -27,7 +27,6 @@ public class CategoryController implements Serializable {
     @Inject
     BranchRepository branchRepository;
 
-
     private CategoryRequest categoryRequest;
 
     public CategoryRequest getAddRequest() {

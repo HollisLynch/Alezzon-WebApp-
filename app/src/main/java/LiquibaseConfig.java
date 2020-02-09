@@ -27,6 +27,8 @@ public class LiquibaseConfig {
         config.setJdbcUrl("jdbc:postgresql://localhost:5433/postgres");
         config.setUsername("postgres");
         config.setPassword("Darisae12");
+        config.addDataSourceProperty("maxConnections", "300");
+
 
         return new HikariDataSource(config);
     }

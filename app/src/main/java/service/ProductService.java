@@ -2,6 +2,7 @@ package service;
 
 
 import model.Category;
+import model.Picture;
 import model.Product;
 import model.ProductParametr;
 import repository.BranchRepository;
@@ -45,5 +46,13 @@ public class ProductService {
 
     public void saveParametersToProduct(ProductParametr productParametr) {
         productRepository.saveParametersToProduct(productParametr);
+    }
+
+    public List<Product> findAll() {
+        return productRepository.findAll();
+    }
+
+    public void savePicToProduct(Picture picture) {
+        productRepository.savePicToProduct(picture);
     }
 }

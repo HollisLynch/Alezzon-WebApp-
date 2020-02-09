@@ -3,10 +3,15 @@ package request.edit;
 import model.Category;
 import model.Picture;
 import model.ProductParametr;
+
+import javax.annotation.ManagedBean;
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
 import java.util.List;
 
-
-public class EditProductRequest {
+@ManagedBean
+@SessionScoped
+public class EditProductRequest implements Serializable {
 
     private List<Picture> pictures;
     private Long id;

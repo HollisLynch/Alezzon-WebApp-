@@ -2,30 +2,48 @@ package request;
 
 import model.ProductParametr;
 
+import javax.annotation.ManagedBean;
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
 import java.util.List;
+
 
 
 public class ProductRequest {
 
     private Long id;
+    private Long editId;
     private Long categoryId;
     private Long userId;
-
     private String title;
     private String description;
-    private String pictures;
+    private String link;
     private List<ProductParametr> parameters;
     private String value;
+    private boolean editmode;
 
     private double price;
 
     private Long parameterId;
 
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 
     public ProductRequest() {
     }
 
+    public boolean isEditmode() {
+        return editmode;
+    }
 
+    public void setEditmode(boolean editmode) {
+        this.editmode = editmode;
+    }
 
     public Long getId() {
         return id;
@@ -67,14 +85,6 @@ public class ProductRequest {
         this.description = description;
     }
 
-    public String getPictures() {
-        return pictures;
-    }
-
-    public void setPictures(String pictures) {
-        this.pictures = pictures;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -105,5 +115,13 @@ public class ProductRequest {
 
     public void setParameterId(Long parameterId) {
         this.parameterId = parameterId;
+    }
+
+    public Long getEditId() {
+        return editId;
+    }
+
+    public void setEditId(Long editId) {
+        this.editId = editId;
     }
 }

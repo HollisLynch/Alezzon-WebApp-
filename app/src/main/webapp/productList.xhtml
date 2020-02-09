@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:p="http://primefaces.org/ui">
 <f:view>
 
     <f:metadata>
-        <f:viewParam name="id" value="#{editProductController.getEditRequest().id}"/>
+        <f:viewParam name="id"  value="#{productController.getAddRequest().id}"/>
     </f:metadata>
 
     <h:body>
@@ -25,6 +25,7 @@
                              var="product"
                              value = "#{listProductController.getProductListForUser()}">
 
+                    <h:inputHidden id="id" value="#{productController.getAddRequest().id}" />
                             <h:column>
                                 <f:facet name = "header">Id: </f:facet>
                                      #{product.id}
@@ -34,10 +35,7 @@
                     <h:column>
                         <f:facet name = "header">Title: </f:facet>
                         <h:outputLabel value="#{product.title}"
-                                          rendered="#{not editProductController.editmode}"/>
-                            <h:inputText id="title"
-                                         value="#{editProductController.getEditRequest().title}"
-                                         rendered="#{editProductController.editmode}"/>
+                                          />
                     </h:column>
 
 
@@ -50,9 +48,7 @@
                             <h:column>
                                 <f:facet name = "header">Description:</f:facet>
                                 <h:outputText value="#{product.description}"
-                                              rendered="#{not editProductController.editmode}"/>
-                                <h:inputText id="description" value="#{editProductController.getEditRequest().getDescription()}"
-                                             rendered="#{editProductController.editmode}"/>
+                                             />
                             </h:column>
 
                             <h:column>
@@ -66,34 +62,27 @@
                                 <f:facet name = "header">Parameters:</f:facet>
                                 <ui:repeat var="productParametr" value="#{listProductController.getParamByProductId(product.id)}">
                                 <h:outputText value="#{productParametr.parameter.value} : #{productParametr.value}"
-                                              rendered="#{not editProductController.editmode}"/>
-                                <h:inputText id="param" value="#{editProductController.getEditRequest().getDescription()}"
-                                             rendered="#{editProductController.editmode}"/>
+                                             />
                                 </ui:repeat>
                             </h:column>
 
                             <h:column>
                                 <f:facet name = "header">Price:</f:facet>
-                                <h:outputText value="#{product.price}" rendered="#{not editProductController.editmode}"/>
-                                <h:inputText id="price" value="#{editProductController.getEditRequest().price}"
-                                             rendered="#{editProductController.editmode}"/>
+                                <h:outputText value="#{product.price}" />
                             </h:column>
 
 
                                 <h:column>
                                     <f:facet name = "header">Edit:</f:facet>
-                               <h:commandButton value = "Edit Product"
-                                                action = "#{editProductController.edit()}"
-                                                rendered="#{not editProductController.editmode}">
-                                    <f:param name="productId" value="#{product.id}"/>
-                               </h:commandButton>
+                               <h:commandLink value = "Edit Product"
+                                                action = "#{productController.edit()}">
+                                   <f:param name="id" value="#{product.id}"/>
+                               </h:commandLink>
                                 </h:column>
+
 
                 </h:dataTable>
             <br/>
-
-
-
 
             </h:form>
 

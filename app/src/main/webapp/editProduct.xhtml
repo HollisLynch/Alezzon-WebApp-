@@ -5,56 +5,83 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:p="http://primefaces.org/ui">
 <f:view>
+
+    <f:metadata>
+        <f:viewParam name="id" id="id" value="#{productController.getAddRequest().id}"/>
+    </f:metadata>
+
     <h:body>
+
         <ui:composition template="template.xhtml">
             <ui:define name="content">
-                <h:form id="product" var="product">
-                    <fieldset>
+
+                <h:form>
 
 
-                        <div class="form-group">
-                            <label for = "title">Title:</label>
-                            <h:inputText id="title"
-                                         class="form-control"
-                                         value="#{editProductController.getEditRequest().title}"/>
-                        </div>
+                    <div class="wrap-login100" align="center">
+                        <h:outputLabel for="id" value = "Id: "/>
+                        <h:outputText name="id" value="#{productController.getAddRequest().id}"/>
+                    </div>
 
-
-                        <div class="form-group">
-                            <label for = "description">Description:</label>
-                            <h:inputText id="description"
-                                         class="form-control"
-                                         value="#{editProductController.getEditRequest().description}"/>
+                    <div class="wrap-login100" align="center">
+                        <h:outputLabel for="title" value = "Title: "/>
+                            <h:inputText id="title" value="#{productController.getAddRequest().title}"/>
                         </div>
 
 
 
-                        <div class="form-group">
-                            <label for = "param">Parameters:</label>
-                            <ui:repeat var="productParametr" value="#{listProductController.getParamByProductId(product.id)}">
-                                <h:outputText value="#{productParametr.parameter.value} : #{productParametr.value}"
-                                              />
-                                <h:inputText id="param" value="#{editProductController.getEditRequest().description}"
-                                             />
-                            </ui:repeat>
-                        </div>
+                    <div class="wrap-login100" align="center">
+                        <h:outputLabel for="description" value = "Description: "/>
+                        <h:inputText id="description" value="#{productController.getAddRequest().description}"/>
+                    </div>
 
-                        <div class="form-group">
-                            <label for = "price">Price:</label>
-                            <h:inputText id="price"
-                                         class="form-control"
-                                         value="#{editProductController.getEditRequest().price}"/>
-                        </div>
+                    <div class="wrap-login100" align="center">
+                            <h:outputLabel for="description" value = "Pictures: "/>
+                            <ui:repeat var="picture" value="#{listProductController.getPicListByProductId(productController.getAddRequest().id)}">
+                                <h:graphicImage value = "#{picture.link}" height="60px" width="60px" alt="Image not found"/>
+                            </ui:repeat >
+                    </div>
+
+
+<!--                    <div class="wrap-login100" align="center">-->
+<!--                        <h:outputLabel for="paramlist">Parametr: </h:outputLabel>-->
+<!--                        <h:selectOneMenu class="form-control"-->
+<!--                                         id="paramlist"-->
+<!--                                         value="#{productController.getAddRequest().parameterId}">-->
+<!--                            <f:selectItems value="#{paramController.getParamList()}"-->
+<!--                                           var="parametr"-->
+<!--                                           itemValue="#{parametr.id}"-->
+<!--                                           itemLabel="#{parametr.value}"/>-->
+<!--                        </h:selectOneMenu>-->
+<!--                    </div>-->
+
+<!--                    <div class="wrap-login100" align="center">-->
+<!--                        <h:outputLabel for="value">Value: </h:outputLabel>-->
+<!--                        <h:inputText id="value"-->
+<!--                                     value="#{productController.getAddRequest().value}"-->
+<!--                                     class="form-control">-->
+<!--                        </h:inputText>-->
+<!--                    </div>-->
+
+
+                    <div class="wrap-login100" align="center">
+                        <h:outputLabel for="price" value = "Price: "/>
+                            <h:inputText id="price" value="#{productController.getAddRequest().price}" />
+                    </div>
+
+
+                    <div class="wrap-login100" align="center">
+                            <h:commandButton value = "Edit Product"
+                                             action = "#{productController.editProduct()}">
+                            </h:commandButton>
+                    </div>
+
                     <br/>
 
-                    <h:commandButton value = "Save Product"
-                                     action = "#{editProductController.save()}"/>
-
-                    </fieldset>
                 </h:form>
 
             </ui:define>

@@ -1,6 +1,7 @@
 package repository;
 
 import model.Category;
+import model.Picture;
 import model.Product;
 import model.ProductParametr;
 
@@ -38,6 +39,11 @@ public class ProductRepository {
     }
 
     @Transactional
+    public void savePicToProduct(Picture picture) {
+        em.persist(picture);
+    }
+
+    @Transactional
     public Category findCategoryByProductId(Long productId) {
         return em.createQuery("select c from Category c where c.id in(select p.category.id from Product p where p.id = :productId)", Category.class)
                 .setParameter("productId", productId)
@@ -70,9 +76,11 @@ public class ProductRepository {
 
     }
 
+
     @Transactional
     public List<Product> findAll(){
-        return em.createQuery("from Product", Product.class).getResultList();
+        return em.createQuery("select p from Product p", Product.class)
+                .getResultList();
     }
 
 
