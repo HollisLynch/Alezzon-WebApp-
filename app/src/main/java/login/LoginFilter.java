@@ -59,9 +59,16 @@ public class LoginFilter extends HttpFilter {
     private boolean isAdminSite(HttpServletRequest req) {
 
         return (req.getRequestURI().equals(req.getContextPath() + "/admin.xhtml") ||
-                req.getRequestURI().contains("add") ||
-                req.getRequestURI().contains("edit"))
-                && !req.getRequestURI().contains("Product");
+
+                (req.getRequestURI().equals(req.getContextPath() + "/addBranch.xhtml") ||
+
+                        (req.getRequestURI().equals(req.getContextPath() + "/addCategory.xhtml") ||
+
+                                (req.getRequestURI().equals(req.getContextPath() + "/editBranch.xhtml") ||
+
+                                        (req.getRequestURI().equals(req.getContextPath() + "/editCategory.xhtml")
+
+                        && !req.getRequestURI().contains("Product"))))));
     }
 
     private boolean hasAdminRights(HttpServletRequest req) {

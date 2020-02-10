@@ -222,4 +222,10 @@ public class ProductController implements Serializable {
         return false;
     }
 
+    public boolean isParametersAreSet() {
+        if (editProductRequest.getParameterId() == null) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -24,7 +24,15 @@
                         <h:outputText name="product" value="#{productController.getEditRequest().id}"/>
                     </div>
 
+                    <h:panelGrid rendered="#{not productController.isParametersAreSet()}">
+                        <h:link value="Add parameters"
+                                outcome="productList">
+                        </h:link>
+                    </h:panelGrid>
+
+                    <h:panelGrid rendered="#{productController.isParametersAreSet()}">
                     <div class="wrap-login100" align="center">
+
                         <h:outputLabel for="paramlist">Parametr: </h:outputLabel>
                         <h:selectOneMenu class="form-control"
                                          id="paramlist"
@@ -49,7 +57,7 @@
                                          action="#{productController.saveEditedParametersToProduct()}"
                                          class="btn btn-outline-primary"/>
                     </div>
-
+                    </h:panelGrid>
 
 
                 </h:form>
