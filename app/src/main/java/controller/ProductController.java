@@ -2,16 +2,19 @@ package controller;
 
 
 import controller.converters.Retriever;
+import controller.list.ListController;
 import model.*;
 import repository.CategoryRepository;
 import repository.ParamRepository;
 import repository.ProductRepository;
 import request.ProductRequest;
 import request.edit.EditProductRequest;
+
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.RollbackException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +29,9 @@ public class ProductController implements Serializable {
 
     @Inject
     EditProductRequest editProductRequest;
+
+    @Inject
+    ListController listController;
 
     @Inject
     private Retriever retriever;
@@ -101,12 +107,17 @@ public class ProductController implements Serializable {
 
         ProductParametr productParametr = new ProductParametr();
 
-        productParametr.setProduct(p);
-        productParametr.setParameter(parametr);
-        productParametr.setValue(value);
+        if (p.getId().equals(productId) && parametr.getId().equals(parametrId)) {
+            return "/addProduct.xhtml?faces-redirect=true";
 
-        productRepository.saveParams(productParametr);
-        return "/addProduct.xhtml?faces-redirect=true";
+        } else {
+            productParametr.setProduct(p);
+            productParametr.setParameter(parametr);
+            productParametr.setValue(value);
+            productRepository.saveParams(productParametr);
+            return "/addProduct.xhtml?faces-redirect=true";
+        }
+
     }
 
     public String savePicToProduct() {
@@ -166,7 +177,6 @@ public class ProductController implements Serializable {
         editProductRequest.setCategoryId(categoryId);
 
 
-
         return "/editProduct.xhtml?faces-redirect=true";
     }
 
@@ -201,7 +211,7 @@ public class ProductController implements Serializable {
         Long parameterId = editProductRequest.getParameterId();
         Long productId = editProductRequest.getId();
 
-     //   Product p = productRepository.findProductById(productId);
+        //   Product p = productRepository.findProductById(productId);
         Parametr parametr = paramRepository.findParamById(parameterId);
         ProductParametr productParametr = productRepository.findProductParamByParamIdAndProduct(parameterId, productId);
 
@@ -222,10 +232,14 @@ public class ProductController implements Serializable {
         return false;
     }
 
+
     public boolean isParametersAreSet() {
-        if (editProductRequest.getParameterId() == null) {
+
+        List<ProductParametr> parametrs = listController.findParamListForProduct(editProductRequest.getId());
+        if (parametrs.isEmpty()) {
             return false;
         }
         return true;
+
     }
 }

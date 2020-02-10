@@ -78,7 +78,7 @@ public class CategoryController implements Serializable {
         return branchRepository.findAll();
     }
 
-    public boolean getIsEmptyList() {
+    public boolean isEmptyList() {
         if(findCategoryList().isEmpty()) {
             return true;
         }

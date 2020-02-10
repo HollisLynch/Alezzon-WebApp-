@@ -26,7 +26,7 @@ public class ProductRepository {
 
     @Transactional
     public void saveParametersToProduct(ProductParametr productParametr) {
-        if (productParametr.getParameter() == null || productParametr.getProduct() == null)
+        if (productParametr.getParameter() == null && productParametr.getProduct() == null)
             em.persist(productParametr);
         else
             em.merge(productParametr);
