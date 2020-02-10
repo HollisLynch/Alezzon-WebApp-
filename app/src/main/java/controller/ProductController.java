@@ -105,7 +105,7 @@ public class ProductController implements Serializable {
         productParametr.setParameter(parametr);
         productParametr.setValue(value);
 
-        productRepository.saveParametersToProduct(productParametr);
+        productRepository.saveParams(productParametr);
         return "/addProduct.xhtml?faces-redirect=true";
     }
 

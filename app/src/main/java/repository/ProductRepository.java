@@ -33,6 +33,11 @@ public class ProductRepository {
     }
 
     @Transactional
+    public void saveParams(ProductParametr productParametr) {
+        em.persist(productParametr);
+    }
+
+    @Transactional
     public void savePicToProduct(Picture picture) {
         em.persist(picture);
     }
