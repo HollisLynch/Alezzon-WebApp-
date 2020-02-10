@@ -28,7 +28,7 @@
                         <h:outputLabel for="paramlist">Parametr: </h:outputLabel>
                         <h:selectOneMenu class="form-control"
                                          id="paramlist"
-                                         value="#{productController.getEditRequest().parameterId}">
+                                         value="#{productController.getEditRequest().parameterId}" required="true">
                             <f:selectItems value="#{listController.findParamListForProduct(productController.getEditRequest().id)}"
                                            var="productParametr"
                                            itemValue="#{productParametr.parameter.id}"
@@ -39,7 +39,7 @@
                     <div class="wrap-login100" align="center">
                         <h:outputLabel for="value">Value: </h:outputLabel>
                         <h:inputText id="value"
-                                     value="#{productController.getEditRequest().value}"
+                                     value="#{productController.getAddRequest().value}"
                                      class="form-control" required="true">
                         </h:inputText>
                     </div>

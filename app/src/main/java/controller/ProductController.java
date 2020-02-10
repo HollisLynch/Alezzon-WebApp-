@@ -197,7 +197,7 @@ public class ProductController implements Serializable {
 
 
     public String saveEditedParametersToProduct() {
-        String valueNew = editProductRequest.getValue();
+        String valueNew = productRequest.getValue();
         Long parameterId = editProductRequest.getParameterId();
         Long productId = editProductRequest.getId();
 

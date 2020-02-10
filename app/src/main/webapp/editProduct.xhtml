@@ -33,8 +33,8 @@
                         <h:outputLabel for="categorylist">Category: </h:outputLabel>
                         <h:selectOneMenu class="form-control"
                                          id="categorylist"
-                                         value="#{productController.getEditRequest().categoryId}">
-                            <f:selectItems value="#{categoryController.getCategoryList()}"
+                                         value="#{productController.getEditRequest().categoryId}" required="true">
+                            <f:selectItems value="#{categoryController.findCategoryList()}"
                                            var="category"
                                            itemValue="#{category.id}"
                                            itemLabel="#{category.name}"/>

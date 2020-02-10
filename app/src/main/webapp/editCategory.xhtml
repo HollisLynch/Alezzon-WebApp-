@@ -17,7 +17,11 @@
         <ui:composition template="template.xhtml">
             <ui:define name="content">
 
-                <h:form>
+                <div class="wrap-login100" align="center">
+                    <h:outputText value="No categories to edit" rendered="#{categoryController.isEmptyList()}"/>
+                </div>
+
+                <h:form rendered="#{not categoryController.isEmptyList()}">
 
                     <div class="wrap-login100" align="center">
                         <h:outputLabel value="Edit category"/>
@@ -26,8 +30,8 @@
 
                     <div class="wrap-login100" align="center">
                         <h:outputLabel for="category" value="Category: "/>
-                        <h:selectOneMenu id="category" value="#{categoryController.getAddRequest().id}">
-                            <f:selectItems value="#{categoryController.getCategoryList()}"
+                        <h:selectOneMenu id="category" value="#{categoryController.getAddRequest().id}" required="true">
+                            <f:selectItems value="#{categoryController.findCategoryList()}"
                                            var="category"
                                            itemLabel="#{category.name}"
                                            itemValue="#{category.id}"/>

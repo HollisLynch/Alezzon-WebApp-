@@ -17,7 +17,9 @@
         <ui:composition template="template.xhtml">
             <ui:define name="content">
 
+                <div class="wrap-login100" align="center">
                 <h:outputText value="No products for your acc" rendered="#{listController.getEmptyList}"/>
+                </div>
 
                 <h:form id="productForm" rendered="#{not listController.getEmptyList}">
 

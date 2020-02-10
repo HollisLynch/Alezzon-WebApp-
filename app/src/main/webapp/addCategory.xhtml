@@ -28,7 +28,7 @@
                     <div class="wrap-login100" align="center">
                         <h:outputLabel for="branch" value="Branch: "/>
                         <h:selectOneMenu id="branch" value="#{categoryController.getAddRequest().branchId}">
-                            <f:selectItems value="#{categoryController.getBranchList()}"
+                            <f:selectItems value="#{categoryController.findBranchList()}"
                                            var="branch"
                                            itemLabel="#{branch.name}"
                                            itemValue="#{branch.id}"/>
@@ -38,7 +38,6 @@
                     <div class="wrap-login100" align="center">
                     <h:commandButton value="Save" action="#{categoryController.saveCategory}" class="btn btn-outline-primary">
                     </h:commandButton>
-                    <h:button value="Menu" class="btn btn-outline-primary" outcome="admin.xhtml"/>
                     </div>
 
                 </h:form>

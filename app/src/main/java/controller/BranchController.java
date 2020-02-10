@@ -1,6 +1,7 @@
 package controller;
 
 import model.Branch;
+import model.Product;
 import repository.BranchRepository;
 import request.BranchRequest;
 
@@ -49,11 +50,14 @@ public class BranchController {
 
     }
 
-    public List<Branch> getBranchList() {
 
-        return branchRepository.findAll();
+    public boolean isEmptyList() {
+        List<Branch> listBranch = branchRepository.findAll();
+        if(listBranch.isEmpty()) {
+            return true;
+        }
+        return false;
     }
-
 }
 
 

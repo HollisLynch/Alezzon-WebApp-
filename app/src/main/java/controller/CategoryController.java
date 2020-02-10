@@ -68,14 +68,21 @@ public class CategoryController implements Serializable {
 
     }
 
-    public List<Category> getCategoryList() {
+    public List<Category> findCategoryList() {
 
         return categoryRepository.findAll();
     }
 
-    public List<Branch> getBranchList() {
+    public List<Branch> findBranchList() {
 
         return branchRepository.findAll();
+    }
+
+    public boolean getIsEmptyList() {
+        if(findCategoryList().isEmpty()) {
+            return true;
+        }
+        return false;
     }
 }
 

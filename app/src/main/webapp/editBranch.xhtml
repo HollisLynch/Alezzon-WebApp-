@@ -16,7 +16,11 @@
         <ui:composition template="template.xhtml">
             <ui:define name="content">
 
-                <h:form>
+                <div class="wrap-login100" align="center">
+                <h:outputText value="No branches to edit" rendered="#{branchController.isEmptyList()}"/>
+                </div>
+
+                <h:form rendered="#{not branchController.isEmptyList()}">
 
                     <div class="wrap-login100" align="center">
                         <h:outputLabel value="Edit branch"/>
@@ -25,8 +29,8 @@
 
                     <div class="wrap-login100" align="center">
                         <h:outputLabel for="branch" value="Branch: "/>
-                        <h:selectOneMenu id="branch" value="#{branchController.getAddRequest().id}">
-                            <f:selectItems value="#{categoryController.getBranchList()}"
+                        <h:selectOneMenu id="branch" value="#{branchController.getAddRequest().id}" required="true">
+                            <f:selectItems value="#{categoryController.findBranchList()}"
                                            var="branch"
                                            itemLabel="#{branch.name}"
                                            itemValue="#{branch.id}"/>
