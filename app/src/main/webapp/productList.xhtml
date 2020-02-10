@@ -17,14 +17,14 @@
         <ui:composition template="template.xhtml">
             <ui:define name="content">
 
-                <h:outputText value="No products for your acc" rendered="#{listProductController.getEmptyList}"/>
+                <h:outputText value="No products for your acc" rendered="#{listController.getEmptyList}"/>
 
-                <h:form id="productForm" rendered="#{not listProductController.getEmptyList}">
+                <h:form id="productForm" rendered="#{not listController.getEmptyList}">
 
                     <h:dataTable id="productTable"
                                  class="table table-hover"
                                  var="product"
-                                 value="#{listProductController.getProductListForUser()}">
+                                 value="#{listController.findProductListForUser()}">
 
 
                         <h:inputHidden id="id" value="#{productController.getAddRequest().id}"/>
@@ -54,7 +54,7 @@
                         <h:column>
                             <f:facet name="header">Pictures:</f:facet>
                             <ui:repeat var="picture"
-                                       value="#{listProductController.getFirstPicByProductId(product.id)}">
+                                       value="#{listController.findFirstPicByProductId(product.id)}">
                                 <h:graphicImage value="#{picture.link}" height="95px" width="80px"
                                                 alt="Error"/>
                             </ui:repeat>
@@ -63,7 +63,7 @@
                         <h:column>
                             <f:facet name="header">Parameters:</f:facet>
                             <ui:repeat var="productParametr"
-                                       value="#{listProductController.getParamByProductId(product.id)}">
+                                       value="#{listController.findParamByProductId(product.id)}">
                                 <h:outputText value="#{productParametr.parameter.value} : #{productParametr.value}"
                                 />
                             </ui:repeat>

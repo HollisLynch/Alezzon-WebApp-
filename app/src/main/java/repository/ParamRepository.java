@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @ApplicationScoped
 public class ParamRepository {
@@ -38,28 +37,15 @@ public class ParamRepository {
 
 
     @Transactional
-    public Parametr findParamByName(String paramName) {
-        return em.createQuery("select s from Parametr s where s.value = :paramName", Parametr.class)
-                .setParameter("paramName", paramName)
-                .getSingleResult();
-    }
-
-    @Transactional
-    public ProductParametr findProductParamById(Long id) {
-        return em.createQuery("select pp from ProductParametr pp where pp.product.id = :id", ProductParametr.class)
-                .setParameter("id", id)
-                .getSingleResult();
-    }
-
-    @Transactional
-    public void saveProductParam(ProductParametr parameter) {
-        em.persist(parameter);
-    }
-
-
-    @Transactional
-    public List<ProductParametr> getParamByProductId(Long productId) {
+    public List<ProductParametr> findParamByProductId(Long productId) {
         return em.createQuery("select pp from ProductParametr pp join Parametr p on pp.parameter.id = p.id and pp.product.id = :productId", ProductParametr.class)
+                .setParameter("productId", productId)
+                .getResultList();
+    }
+
+    @Transactional
+    public List<ProductParametr> findParamListForProduct(Long productId) {
+        return em.createQuery("select pp from ProductParametr pp join Parametr p on pp.parameter.id = p.id and pp.product.id=:productId ", ProductParametr.class)
                 .setParameter("productId", productId)
                 .getResultList();
     }

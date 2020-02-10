@@ -26,7 +26,7 @@
 
                     <div class="wrap-login100" align="center">
                         <ui:repeat var="picture"
-                                   value="#{listProductController.getPicListByProductId(productController.getEditRequest().id)}">
+                                   value="#{listController.findPicListByProductId(productController.getEditRequest().id)}">
                             <h:graphicImage value="#{picture.link}" height="100px" width="80px"
                                             alt="Error"/>
                         </ui:repeat>

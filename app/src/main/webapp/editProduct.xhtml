@@ -19,9 +19,9 @@
         <ui:composition template="template.xhtml">
             <ui:define name="content">
 
-                <h:outputText value="No request for editing product" rendered="#{not productController.getIsEditRequestSend()}"/>
+                <h:outputText value="No request for editing product" rendered="#{productController.getEmptyRequestSend()}"/>
 
-                <h:form rendered="#{productController.getIsEditRequestSend()}">
+                <h:form rendered="#{not productController.getEmptyRequestSend()}">
 
 
                     <div class="wrap-login100" align="center">
@@ -68,7 +68,7 @@
 
                     <div class="wrap-login100" align="center">
                         <ui:repeat var="picture"
-                                   value="#{listProductController.getPicListByProductId(productController.getEditRequest().id)}">
+                                   value="#{listController.findPicListByProductId(productController.getEditRequest().id)}">
                             <h:graphicImage value="#{picture.link}" height="95px" width="80px"
                                             alt="Error"/>
                         </ui:repeat>

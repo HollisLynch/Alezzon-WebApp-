@@ -1,12 +1,13 @@
 package controller.list;
 
 import controller.converters.Retriever;
+import model.Parametr;
 import model.Picture;
 import model.Product;
 import model.ProductParametr;
+import repository.ParamRepository;
 import repository.ProductRepository;
-import service.ParamService;
-import service.ProductListService;
+import repository.ListRepository;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -15,51 +16,47 @@ import java.util.List;
 
 @Named
 @RequestScoped
-public class ListProductController {
+public class ListController {
 
     @Inject
     ProductRepository productRepository;
 
     @Inject
-    ProductListService productListService;
+    ListRepository listRepository;
+
+    @Inject
+    ParamRepository paramRepository;
 
     @Inject
     Retriever retriever;
 
 
-    public Long getOwnerId() {
-
-        Long ownerid = retriever.getLongUserId("id");
-        return ownerid;
-    }
-
-
-    public List<Product> getProductListForUser() {
+    public List<Product> findProductListForUser() {
 
             Long ownerId = retriever.getLongUserId("id");
             return productRepository.findProductListByOwnerId(ownerId);
 
     }
 
-    public Product getProduct() {
+    public Product findProduct() {
         Long productId = retriever.getLong("productId");
         return productRepository.findProductById(productId);
     }
 
-    public List<ProductParametr> getParamByProductId(Long productId) {
-        return productListService.getParameterByProductId(productId);
+    public List<ProductParametr> findParamByProductId(Long productId) {
+        return listRepository.findParameterByProductId(productId);
     }
 
-    public List<Picture> getPicListByProductId(Long productId) {
+    public List<Picture> findPicListByProductId(Long productId) {
 
 
-        return productListService.getPicListByProductId(productId);
+        return listRepository.findPicListByProductId(productId);
     }
 
-    public List<Picture> getFirstPicByProductId(Long productId) {
+    public List<Picture> findFirstPicByProductId(Long productId) {
 
 
-        return productListService.getFirstPicByProductId(productId);
+        return listRepository.findFirstPicByProductId(productId);
     }
 
 
@@ -70,5 +67,9 @@ public class ListProductController {
             return true;
         }
         return false;
+    }
+
+    public List<ProductParametr> findParamListForProduct(Long productId) {
+        return paramRepository.findParamListForProduct(productId);
     }
 }

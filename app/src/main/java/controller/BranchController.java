@@ -1,6 +1,5 @@
 package controller;
 
-import controller.converters.Retriever;
 import model.Branch;
 import repository.BranchRepository;
 import request.BranchRequest;

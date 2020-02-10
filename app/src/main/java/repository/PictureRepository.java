@@ -24,7 +24,7 @@ public class PictureRepository {
     }
 
     @Transactional
-    public List<Picture> getPicListByProductId(Long productId) {
+    public List<Picture> findPicListByProductId(Long productId) {
         return em.createQuery("select p from Picture p where p.product.id = :productId", Picture.class)
                 .setParameter("productId", productId)
                 .getResultList();
@@ -32,7 +32,7 @@ public class PictureRepository {
 
 
     @Transactional
-    public List<Picture> getFirstPicByProductId(Long productId) {
+    public List<Picture> findFirstPicByProductId(Long productId) {
         return em.createQuery("select p from Picture p where p.product.id = :productId", Picture.class)
                 .setParameter("productId", productId)
                 .setMaxResults(1)

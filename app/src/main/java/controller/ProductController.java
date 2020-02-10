@@ -8,14 +8,8 @@ import repository.ParamRepository;
 import repository.ProductRepository;
 import request.ProductRequest;
 import request.edit.EditProductRequest;
-import service.ParamService;
-import service.ProductService;
-
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -219,10 +213,13 @@ public class ProductController implements Serializable {
         return "/editParameters.xhtml?faces-redirect=true";
     }
 
-    public boolean getIsEditRequestSend() {
-        if (editProductRequest.getId() != null) {
+    private boolean emptyRequestSend;
+
+    public boolean getEmptyRequestSend() {
+        if (editProductRequest.getId() == null) {
             return true;
         }
         return false;
     }
+
 }

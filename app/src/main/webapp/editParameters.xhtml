@@ -29,10 +29,10 @@
                         <h:selectOneMenu class="form-control"
                                          id="paramlist"
                                          value="#{productController.getEditRequest().parameterId}">
-                            <f:selectItems value="#{paramController.getParamListForProduct()}"
-                                           var="parametr"
-                                           itemValue="#{parametr.id}"
-                                           itemLabel="#{parametr.value}"/>
+                            <f:selectItems value="#{listController.findParamListForProduct(productController.getEditRequest().id)}"
+                                           var="productParametr"
+                                           itemValue="#{productParametr.parameter.id}"
+                                           itemLabel="#{productParametr.parameter.value}"/>
                         </h:selectOneMenu>
                     </div>
 

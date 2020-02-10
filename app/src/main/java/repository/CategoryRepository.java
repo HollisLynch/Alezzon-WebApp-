@@ -27,12 +27,6 @@ public class CategoryRepository {
         }
     }
 
-
-    @Transactional
-    public List<Category> getCategoryList() {
-        return em.createQuery("select c from Category c", Category.class).getResultList();
-    }
-
     @Transactional
     public List<Category> findAll() {
         return em.createQuery("from Category", Category.class).getResultList();
@@ -54,7 +48,7 @@ public class CategoryRepository {
 
 
     @Transactional
-    public Branch getBranchFromCategory(Long categoryId) {
+    public Branch findBranchFromCategory(Long categoryId) {
         var branch = em.createQuery("select s from Branch s where s.id = (select c.branch.id from Category c where c.id = :categoryId)", Branch.class)
                 .setParameter("categoryId", categoryId)
                 .getSingleResult();

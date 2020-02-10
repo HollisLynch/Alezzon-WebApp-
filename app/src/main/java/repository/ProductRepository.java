@@ -1,6 +1,5 @@
 package repository;
 
-import model.Category;
 import model.Picture;
 import model.Product;
 import model.ProductParametr;
@@ -10,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @ApplicationScoped
 public class ProductRepository {
@@ -40,9 +38,9 @@ public class ProductRepository {
     }
 
     @Transactional
-    public List<Product> findProductListByOwnerId(Long ownerId) {
-        return em.createQuery("select p from Product p where p.user = :ownerId", Product.class)
-                .setParameter("ownerId", ownerId)
+    public List<Product> findProductListByOwnerId(Long user) {
+        return em.createQuery("select p from Product p where p.user = :user", Product.class)
+                .setParameter("user", user)
                 .getResultList();
 
     }
@@ -55,20 +53,6 @@ public class ProductRepository {
 
     }
 
-
-    @Transactional
-    public List<Product> findAll() {
-        return em.createQuery("select p from Product p", Product.class)
-                .getResultList();
-    }
-
-
-    @Transactional
-    public ProductParametr findProductParamById(Long id) {
-        return em.createQuery("select pp from ProductParametr pp where pp.parameter.id = :id", ProductParametr.class)
-                .setParameter("id", id)
-                .getSingleResult();
-    }
 
     @Transactional
     public ProductParametr findProductParamByParamIdAndProduct(Long parameterId, Long productId) {

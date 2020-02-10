@@ -12,34 +12,25 @@ public class LoginFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
 
-        /*
-        0. ) if the request is resource, process the request.
-        1. ) Check if the user is logged in && !requires login -> process request .  Otherwise, redirect to login.
-        2. ) If the user has access rights, process the request. Otherwise, redirect to nopermission.xhtml
-        these should be in separate if elses.
-         */
 
-        if (isResourceReq(req)|| isSiteAllowed(req)){
+        if (isResourceReq(req) || isSiteAllowed(req)) {
             chain.doFilter(req, res);
             return;
         }
-        if (  isUserLogged(req)) {
+        if (isUserLogged(req)) {
 
-            boolean isAdminSite
-                    =isAdminSite(req);
-            boolean hasAdminRights=hasAdminRights(req);
-            String reqUri=req.getRequestURI();
+            boolean isAdminSite = isAdminSite(req);
+            boolean hasAdminRights = hasAdminRights(req);
 
-            if ( ( isAdminSite&& !hasAdminRights ) ) {
+            if ((isAdminSite && !hasAdminRights)) {
                 res.sendRedirect(getServletContext().getContextPath() + "/welcome.xhtml");
 
-              }else {
+            } else {
                 chain.doFilter(req, res);
 
-                    }
+            }
 
-                }
-          else {
+        } else {
             res.sendRedirect(getServletContext().getContextPath() + "/login.xhtml");
         }
 
@@ -69,9 +60,8 @@ public class LoginFilter extends HttpFilter {
 
         return (req.getRequestURI().equals(req.getContextPath() + "/admin.xhtml") ||
                 req.getRequestURI().contains("add") ||
-                req.getRequestURI().contains("edit") )
-                &&!req.getRequestURI().contains("product")
-                &&!req.getRequestURI().contains("Product");
+                req.getRequestURI().contains("edit"))
+                && !req.getRequestURI().contains("Product");
     }
 
     private boolean hasAdminRights(HttpServletRequest req) {

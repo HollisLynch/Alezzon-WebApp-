@@ -1,19 +1,13 @@
 package controller;
 
-import controller.converters.Retriever;
 import model.Parametr;
 import repository.ParamRepository;
 import request.ParamRequest;
-import request.ProductParamRequest;
-import service.ParamService;
-
-import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 
 @Named
 @ViewScoped
