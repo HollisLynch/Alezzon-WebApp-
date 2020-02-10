@@ -38,6 +38,12 @@ public class ListController {
 
     }
 
+    public List<Product> findAll() {
+
+        return productRepository.findAll();
+
+    }
+
     public Product findProduct() {
         Long productId = retriever.getLong("productId");
         return productRepository.findProductById(productId);
@@ -63,6 +69,14 @@ public class ListController {
     public boolean getGetEmptyList() {
         Long ownerId = retriever.getLongUserId("id");
         List<Product> listProduct = productRepository.findProductListByOwnerId(ownerId);
+        if(listProduct.isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean getGetEmptyListAll() {
+        List<Product> listProduct = productRepository.findAll();
         if(listProduct.isEmpty()) {
             return true;
         }

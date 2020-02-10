@@ -60,4 +60,9 @@ public class ProductRepository {
                 .setParameter("parameterId", parameterId).setParameter("productId", productId)
                 .getSingleResult();
     }
+
+    @Transactional
+    public List<Product> findAll() {
+        return em.createQuery("from Product", Product.class).getResultList();
+    }
 }
