@@ -12,6 +12,7 @@ public class CategoryRequest implements Serializable {
     private Long id;
     private String name;
     private Long branchId;
+    private String editCategory;
 
 
     public CategoryRequest(String name, Long branchId) {
@@ -46,7 +47,11 @@ public class CategoryRequest implements Serializable {
     public CategoryRequest() {
     }
 
+    public String getEditCategory() {
+        return editCategory;
+    }
 
-
-
+    public void setEditCategory(String editCategory) {
+        this.editCategory = editCategory;
+    }
 }

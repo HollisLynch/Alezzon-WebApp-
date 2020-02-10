@@ -3,6 +3,9 @@ package controller;
 
 import controller.converters.Retriever;
 import model.*;
+import repository.CategoryRepository;
+import repository.ParamRepository;
+import repository.ProductRepository;
 import request.ProductRequest;
 import request.edit.EditProductRequest;
 import service.ParamService;
@@ -25,7 +28,6 @@ import java.util.Map;
 public class ProductController implements Serializable {
 
 
-
     ProductRequest productRequest;
 
     @Inject
@@ -35,10 +37,13 @@ public class ProductController implements Serializable {
     private Retriever retriever;
 
     @Inject
-    ProductService productService;
+    ProductRepository productRepository;
 
     @Inject
-    ParamService paramService;
+    CategoryRepository categoryRepository;
+
+    @Inject
+    ParamRepository paramRepository;
 
 
     public ProductRequest getAddRequest() {
@@ -54,19 +59,18 @@ public class ProductController implements Serializable {
         return p;
     }
 
-    public ProductRequest getEditRequest() {
-        if (productRequest == null) {
-            productRequest = createEditRequest();
+    public EditProductRequest getEditRequest() {
+        if (editProductRequest == null) {
+            editProductRequest = createEditRequest();
         }
-        return productRequest;
+        return editProductRequest;
     }
 
 
-    public ProductRequest createEditRequest() {
-        ProductRequest p = new ProductRequest();
+    public EditProductRequest createEditRequest() {
+        EditProductRequest p = new EditProductRequest();
         return p;
     }
-
 
 
     public String save() {
@@ -78,7 +82,7 @@ public class ProductController implements Serializable {
         Product product = new Product();
 
         Category category;
-        category = productService.findCategoryById(productRequest.getCategoryId());
+        category = categoryRepository.findCategoryById(productRequest.getCategoryId());
         product.setCategory(category);
 
         product.setTitle(title);
@@ -89,7 +93,7 @@ public class ProductController implements Serializable {
         product.setUser(user);
 
 
-        productService.save(product);
+        productRepository.save(product);
         return "/addProduct.xhtml?faces-redirect=true";
     }
 
@@ -98,8 +102,8 @@ public class ProductController implements Serializable {
         Long parametrId = productRequest.getParameterId();
         Long productId = productRequest.getId();
 
-        Product p = productService.getProductById(productId);
-        Parametr parametr = paramService.findParamById(parametrId);
+        Product p = productRepository.findProductById(productId);
+        Parametr parametr = paramRepository.findParamById(parametrId);
 
         ProductParametr productParametr = new ProductParametr();
 
@@ -107,55 +111,66 @@ public class ProductController implements Serializable {
         productParametr.setParameter(parametr);
         productParametr.setValue(value);
 
-        productService.saveParametersToProduct(productParametr);
+        productRepository.saveParametersToProduct(productParametr);
         return "/addProduct.xhtml?faces-redirect=true";
     }
 
     public String savePicToProduct() {
-        String link = productRequest.getLink();
-        Long productId = productRequest.getId();
+        savePics(productRequest.getLink(), productRequest.getId());
+        return "/addProduct.xhtml?faces-redirect=true";
+    }
 
-        Product p = productService.getProductById(productId);
+    public String addPicToProduct() {
+        savePics(productRequest.getLink(), editProductRequest.getId());
+        return "/editPictures.xhtml?faces-redirect=true";
+    }
+
+    private void savePics(String link2, Long id) {
+        String link = link2;
+        Long productId = id;
+
+        Product p = productRepository.findProductById(productId);
 
         Picture picture = new Picture();
 
         picture.setProduct(p);
         picture.setLink(link);
 
-        productService.savePicToProduct(picture);
-        return "/addProduct.xhtml?faces-redirect=true";
+        productRepository.savePicToProduct(picture);
     }
 
-    public List<Product> getProductList() {
-
-        return productService.findAll();
-    }
 
     public List<Product> getProductListByOwnerId() {
         Long user = retriever.getLongUserId("id");
-        return productService.getProductListByOwnerId(user);
-    }
-
-    public Product getProductById() {
-        Long productId = productRequest.getId();
-        return productService.getProductById(productId);
+        return productRepository.findProductListByOwnerId(user);
     }
 
     public String edit() {
 
         FacesContext fc = FacesContext.getCurrentInstance();
 
-        Map<String,String> params =
+        Map<String, String> params =
                 fc.getExternalContext().getRequestParameterMap();
 
         String idStr = params.get("id");
 
-       Long id = Long.parseLong(idStr);
-       Product product=productService.getProductById(id);
-        editProductRequest.setId(product.getId());
-        editProductRequest.setDescription(product.getDescription());
-        editProductRequest.setTitle(product.getTitle());
-        editProductRequest.setPrice(product.getPrice());
+        Long id = Long.parseLong(idStr); // Product ID
+        Product product = productRepository.findProductById(id); // Product
+
+        editProductRequest.setId(id);
+        String titleOld = product.getTitle();
+        String desOld = product.getDescription();
+        double priceOld = product.getPrice();
+        Category category = product.getCategory();
+        Long categoryId = category.getId();
+
+
+        editProductRequest.setId(id);
+        editProductRequest.setTitle(titleOld);
+        editProductRequest.setDescription(desOld);
+        editProductRequest.setPrice(priceOld);
+        editProductRequest.setCategoryId(categoryId);
+
 
 
         return "/editProduct.xhtml?faces-redirect=true";
@@ -163,15 +178,51 @@ public class ProductController implements Serializable {
 
     public String editProduct() {
 
+        Product product = productRepository.findProductById(editProductRequest.getId());
 
-        Long id = productRequest.getId();
+        Long user = retriever.getLongUserId("id");
+        product.setUser(user);
 
-        String oldTitle = productRequest.getTitle();
-        String oldDescription = productRequest.getDescription();
-        double oldPrice = productRequest.getPrice();
+        String title = editProductRequest.getTitle();
+        product.setTitle(title);
 
+        String des = editProductRequest.getDescription();
+        product.setDescription(des);
+
+        double price = editProductRequest.getPrice();
+        product.setPrice(price);
+
+        Category category;
+        category = categoryRepository.findCategoryById(editProductRequest.getCategoryId());
+        product.setCategory(category);
+
+        productRepository.save(product);
 
         return "/editProduct.xhtml?faces-redirect=true";
     }
 
+
+    public String saveEditedParametersToProduct() {
+        String valueNew = editProductRequest.getValue();
+        Long parameterId = editProductRequest.getParameterId();
+        Long productId = editProductRequest.getId();
+
+     //   Product p = productRepository.findProductById(productId);
+        Parametr parametr = paramRepository.findParamById(parameterId);
+        ProductParametr productParametr = productRepository.findProductParamByParamIdAndProduct(parameterId, productId);
+
+
+        productParametr.setParameter(parametr);
+        productParametr.setValue(valueNew);
+
+        productRepository.saveParametersToProduct(productParametr);
+        return "/editParameters.xhtml?faces-redirect=true";
+    }
+
+    public boolean getIsEditRequestSend() {
+        if (editProductRequest.getId() != null) {
+            return true;
+        }
+        return false;
+    }
 }

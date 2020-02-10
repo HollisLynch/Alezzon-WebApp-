@@ -25,7 +25,7 @@ public class ParamRepository {
     }
 
     @Transactional
-    public List<Parametr> getParamList(){
+    public List<Parametr> findAll() {
         return em.createQuery("select s from Parametr s", Parametr.class).getResultList();
     }
 
@@ -45,22 +45,15 @@ public class ParamRepository {
     }
 
     @Transactional
-    public ProductParametr findProductParamByIdByName(String valueParam, Long parameterId, Long productId){
-        return em.createQuery("select pp from ProductParametr pp where pp.parameter.id = :parameterId and pp.product.id = :productId and pp.value = :valueParam", ProductParametr.class)
-                .setParameter("parameterId", parameterId).setParameter("productId", productId).setParameter("valueParam", valueParam)
+    public ProductParametr findProductParamById(Long id) {
+        return em.createQuery("select pp from ProductParametr pp where pp.product.id = :id", ProductParametr.class)
+                .setParameter("id", id)
                 .getSingleResult();
     }
 
     @Transactional
     public void saveProductParam(ProductParametr parameter) {
         em.persist(parameter);
-    }
-
-    @Transactional
-    public List<ProductParametr> getProductParamByProductId(Long productId) {
-        return em.createQuery("select p from ProductParametr p where p.product.id = :productId", ProductParametr.class)
-                .setParameter("productId", productId)
-                .getResultList();
     }
 
 

@@ -6,71 +6,40 @@ import model.ProductParametr;
 
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
 @ManagedBean
 @SessionScoped
+@Named
 public class EditProductRequest implements Serializable {
 
-    private List<Picture> pictures;
     private Long id;
-    private Category category;
-    private String picLink;
+    private Long editId;
+    private Long categoryId;
+    private Long userId;
     private String title;
     private String description;
-    private List<ProductParametr> productParametr;
-    private double price;
-    private Long user;
-    private boolean editable;
+    private String link;
+    private List<ProductParametr> parameters;
+    private String value;
 
-    public EditProductRequest(List<Picture> pictures,
-                              Long id, Category category,
-                              String picLink, String title, String description,
-                              List<ProductParametr> productParametr, double price,
-                              Long user, boolean editable) {
-        this.pictures = pictures;
-        this.id = id;
-        this.category = category;
-        this.picLink = picLink;
-        this.title = title;
-        this.description = description;
-        this.productParametr = productParametr;
-        this.price = price;
-        this.user = user;
-        this.editable = editable;
+    private double price;
+
+    private Long parameterId;
+
+    public String getLink() {
+        return link;
     }
 
-
-
+    public void setLink(String link) {
+        this.link = link;
+    }
 
     public EditProductRequest() {
     }
 
-
-
-    public EditProductRequest(Long id, String title,
-                              String description, double price,
-                              Category category, Long user, List<Picture> pictures,
-                              List<ProductParametr> productParameters) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.category = category;
-        this.user = user;
-        this.pictures = pictures;
-        this.productParametr = productParameters;
-
-    }
-
-    public List<Picture> getPictures() {
-        return pictures;
-    }
-
-    public void setPictures(List<Picture> pictures) {
-        this.pictures = pictures;
-    }
 
     public Long getId() {
         return id;
@@ -80,20 +49,20 @@ public class EditProductRequest implements Serializable {
         this.id = id;
     }
 
-    public Category getCategory() {
-        return category;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public String getPicLink() {
-        return picLink;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setPicLink(String picLink) {
-        this.picLink = picLink;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getTitle() {
@@ -112,14 +81,6 @@ public class EditProductRequest implements Serializable {
         this.description = description;
     }
 
-    public List<ProductParametr> getProductParametr() {
-        return productParametr;
-    }
-
-    public void setProductParametr(List<ProductParametr> productParametr) {
-        this.productParametr = productParametr;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -128,11 +89,35 @@ public class EditProductRequest implements Serializable {
         this.price = price;
     }
 
-    public Long getUser() {
-        return user;
+    public List<ProductParametr> getParameters() {
+        return parameters;
     }
 
-    public void setUser(Long user) {
-        this.user = user;
+    public void setParameters(List<ProductParametr> parameters) {
+        this.parameters = parameters;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public Long getParameterId() {
+        return parameterId;
+    }
+
+    public void setParameterId(Long parameterId) {
+        this.parameterId = parameterId;
+    }
+
+    public Long getEditId() {
+        return editId;
+    }
+
+    public void setEditId(Long editId) {
+        this.editId = editId;
     }
 }

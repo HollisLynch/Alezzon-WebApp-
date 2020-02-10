@@ -6,44 +6,47 @@
       xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
 
-
     <f:metadata>
-        <f:viewParam name="branchId" value="#{branchController.addRequest.id}"/>
-        <f:viewParam name="name" value="#{branchController.addRequest.name}"/>
+        <f:viewParam name="productId" value="#{productController.getEditRequest().id}"/>
     </f:metadata>
 
     <h:body>
         <ui:composition template="template.xhtml">
             <ui:define name="content">
 
-                <h:form>
 
-                    <div class="wrap-login100" align="center">
-                        <h:outputLabel value="Edit branch"/>
-                    </div>
+
+                <h:form class="form">
 
 
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel for="branch" value="Branch: "/>
-                        <h:selectOneMenu id="branch" value="#{branchController.getAddRequest().id}">
-                            <f:selectItems value="#{categoryController.getBranchList()}"
-                                           var="branch"
-                                           itemLabel="#{branch.name}"
-                                           itemValue="#{branch.id}"/>
-                        </h:selectOneMenu>
+                        <h:outputLabel for="product">Product ID: </h:outputLabel>
+                        <h:outputText name="product" value="#{productController.getEditRequest().id}"/>
                     </div>
 
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel for="name" value="Title: "/>
-                        <h:inputText id="name" value="#{branchController.addRequest.editBranch}" class="input100"
-                                     required="true" requiredMessage="#{msg['invalid']}"/>
-                        <h:message for="name" style="color: red;"/>
+                        <ui:repeat var="picture"
+                                   value="#{listProductController.getPicListByProductId(productController.getEditRequest().id)}">
+                            <h:graphicImage value="#{picture.link}" height="100px" width="80px"
+                                            alt="Error"/>
+                        </ui:repeat>
                     </div>
 
                     <div class="wrap-login100" align="center">
-                        <h:commandButton value="Save" action="#{branchController.edit}"
+                        <h:outputLabel for="link">Picture Link: </h:outputLabel>
+                        <h:inputText id="link"
+                                     value="#{productController.getAddRequest().link}"
+                                     class="form-control" required="true" requiredMessage="#{msg['invalid']}"/>
+                        <h:message for="link" style="color: red;"/>
+                    </div>
+
+                    <div class="wrap-login100" align="center">
+                        <h:commandButton value="Add Picture to Product"
+                                         action="#{productController.addPicToProduct()}"
                                          class="btn btn-outline-primary"/>
                     </div>
+
+
 
                 </h:form>
 

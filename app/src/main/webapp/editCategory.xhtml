@@ -9,7 +9,6 @@
     <f:metadata>
         <f:viewParam name="id" value="#{categoryController.getAddRequest().id}"/>
         <f:viewParam name="name" value="#{categoryController.getAddRequest().name}"/>
-        <f:viewParam name="branch" value="#{categoryController.getAddRequest().branchId}"/>
     </f:metadata>
 
 
@@ -21,29 +20,46 @@
                 <h:form>
 
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel value="Edit category" />
+                        <h:outputLabel value="Edit category"/>
                     </div>
 
-                    <h:inputHidden value="#{categoryController.getAddRequest().id}"/>
 
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel for="name" value = "Name"/>
-                        <h:inputText id="name" value="#{categoryController.getAddRequest().name}" class="form-control"/>
-                    </div>
-
-                    <div class="wrap-login100" align="center">
-                        <h:outputLabel value = "Branch"/>
-                        <h:selectOneMenu value="#{categoryController.getAddRequest().branchId}" class="input100">
-                            <f:selectItems value="#{branchController.branchList}" var="branch" itemLabel="#{branch.name}" itemValue="#{branch.id}"/>
+                        <h:outputLabel for="category" value="Category: "/>
+                        <h:selectOneMenu id="category" value="#{categoryController.getAddRequest().id}">
+                            <f:selectItems value="#{categoryController.getCategoryList()}"
+                                           var="category"
+                                           itemLabel="#{category.name}"
+                                           itemValue="#{category.id}"/>
                         </h:selectOneMenu>
                     </div>
 
+                    <div class="wrap-login100" align="center">
+                        <h:outputLabel for="name" value="Name"/>
+                        <h:inputText id="name" value="#{categoryController.addRequest.editCategory}" class="input100"
+                                     required="true" requiredMessage="#{msg['invalid']}"/>
+                        <h:message for="name" style="color: red;"/>
+                    </div>
+
 
                     <div class="wrap-login100" align="center">
-                        <h:commandButton value="Save" action="#{categoryController.save}" class="btn btn-outline-primary"/>
+                        <h:commandButton value="Save" action="#{categoryController.edit}"
+                                         class="btn btn-outline-primary"/>
                     </div>
 
                 </h:form>
+
+                <div class="wrap-login100" align="center">
+                    <h:link value="Go To Menu"
+                            outcome="admin">
+                    </h:link>
+                </div>
+
+                <div class="wrap-login100" align="center">
+                    <h:link value="Go To Product List"
+                            outcome="productList">
+                    </h:link>
+                </div>
 
             </ui:define>
         </ui:composition>

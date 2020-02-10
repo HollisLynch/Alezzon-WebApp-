@@ -24,11 +24,6 @@ public class ProductListService {
     @Inject
     private ParamRepository paramRepository;
 
-    public List<Product> getProductListByOwnerId(Long ownerId) {
-        return productRepository.getProductListByOwnerId(ownerId);
-
-    }
-
     public List<Picture> getPicListByProductId(Long productId) {
         return picRepository.getPicListByProductId(productId);
     }

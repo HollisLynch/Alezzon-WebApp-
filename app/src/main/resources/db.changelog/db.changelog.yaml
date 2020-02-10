@@ -35,10 +35,9 @@ databaseChangeLog:
         splitStatements: false
         path: setnotnull.sql
   - changeSet:
-      id: h
+      id: setnotnull2
       author: Daryna Kovyrina
       sqlFile:
         relativeToChangelogFile: true
         splitStatements: false
-        path: h.sql
-
+        path: setnotnull2.sql

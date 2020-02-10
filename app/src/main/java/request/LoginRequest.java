@@ -20,17 +20,19 @@ public class LoginRequest {
         this.id = id;
     }
 
-    public String getUsername(){
+    public String getUsername() {
         return username;
     }
-    public String getPassword(){
+
+    public String getPassword() {
         return password;
     }
 
-    public void setUsername(String username){
+    public void setUsername(String username) {
         this.username = username;
     }
-    public void setPassword (String password){
+
+    public void setPassword(String password) {
         this.password = password;
     }
 

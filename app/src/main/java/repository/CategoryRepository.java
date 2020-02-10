@@ -29,12 +29,12 @@ public class CategoryRepository {
 
 
     @Transactional
-    public List<Category> getCategoryList(){
+    public List<Category> getCategoryList() {
         return em.createQuery("select c from Category c", Category.class).getResultList();
     }
 
     @Transactional
-    public List<Category> findAll(){
+    public List<Category> findAll() {
         return em.createQuery("from Category", Category.class).getResultList();
     }
 
@@ -54,10 +54,10 @@ public class CategoryRepository {
 
 
     @Transactional
-    public Optional<Branch> getBranchFromCategory(Long categoryId){
-        var branch =  em.createQuery("select s from Branch s where s.id = (select c.branch.id from Category c where c.id = :categoryId)", Branch.class)
+    public Branch getBranchFromCategory(Long categoryId) {
+        var branch = em.createQuery("select s from Branch s where s.id = (select c.branch.id from Category c where c.id = :categoryId)", Branch.class)
                 .setParameter("categoryId", categoryId)
                 .getSingleResult();
-        return Optional.ofNullable(branch);
+        return branch;
     }
 }

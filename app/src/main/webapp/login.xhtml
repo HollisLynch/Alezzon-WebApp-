@@ -8,13 +8,12 @@
 >
 
 <h:body>
-<ui:composition template="template.xhtml">
+    <ui:composition template="template.xhtml">
 
 
-    <ui:define name="content">
+        <ui:define name="content">
 
-        <h:form style="display:block; text-align:center">
-
+            <h:form style="display:block; text-align:center">
 
 
                 <div class="form-group">
@@ -23,13 +22,12 @@
                     <h:inputText value="#{loginRequest.username}"
                                  type="text"
                                  id="username"
-                                 required="true" >
+                                 placeholder="Username"
+                                 required="true"
+                                 requiredMessage="#{msg['username']}">
                     </h:inputText>
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-
                     <h:message for="username" style="color: red;"/>
                 </div>
-
 
 
                 <div class="form-group">
@@ -38,35 +36,26 @@
                     <h:inputSecret value="#{loginRequest.password}"
                                    id="password"
                                    placeholder="Password"
-                                   required="true">
+                                   required="true"
+                                   requiredMessage="#{msg['password']}">
                     </h:inputSecret>
 
-                    <h:message for="password" style="color: red;" />
+                    <h:message for="password" style="color: red;"/>
                 </div>
 
 
+                <h:commandButton value="Login" class="btn btn-outline-primary" action="#{loginController.login}"/>
 
-            <h:commandButton value="Login" class="btn btn-outline-primary" action="#{loginController.login}" />
-
-            <h:button value="Registration" class="btn btn-outline-primary" outcome="registration.xhtml" />
-
-
-            <!--            <div>-->
-
-<!--            <button onclick="location.href='registration.xhtml'" type="button" >-->
-<!--                Registration</button>-->
-<!--            </div>-->
+                <h:button value="Registration" class="btn btn-outline-primary" outcome="registration.xhtml"/>
 
 
+            </h:form>
 
 
-        </h:form>
+        </ui:define>
+
+    </ui:composition>
 
 
-    </ui:define>
-
-</ui:composition>
-
-    
 </h:body>
 </html>

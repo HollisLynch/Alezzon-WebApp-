@@ -37,22 +37,19 @@ public class LoginController {
 
         User user = userRepository.selectSingleResWithUsername(loginRequest.getUsername());
 
-        if ( logIn(loginRequest.getUsername(), loginRequest.getPassword())) {
-            if (user.getRole().equals("admin")) {
-                FacesContext facesContext = FacesContext.getCurrentInstance();
-                HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        if (logIn(loginRequest.getUsername(), loginRequest.getPassword())) {
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
 
+            session.setAttribute("user",user);
+            if (user.getRole().equals("admin")) {
                 session.setAttribute("admin", user.getUsername());
-                return  "/admin.xhtml?faces-redirect=true";
-            }
-            else {
-                FacesContext facesContext = FacesContext.getCurrentInstance();
-                HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+                return "/admin.xhtml?faces-redirect=true";
+            } else {
                 session.setAttribute("username", user.getUsername());
                 return "/welcome.xhtml?faces-redirect=true";
             }
-        }
-        else {
+        } else {
             FacesContext.getCurrentInstance().getExternalContext().getFlash().put("error-message", "Incorrect username or password");
             return "/login.xhtml?faces-redirect=true";
         }
@@ -82,10 +79,6 @@ public class LoginController {
         else
             return true;
     }
-
-
-
-
 
 
 }

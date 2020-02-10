@@ -14,68 +14,79 @@
             <h:form style="display:block; text-align:center">
 
 
-            <h:panelGroup class="form-group">
-                <div class="form-group">
-            <h:outputLabel value="Name: "/>
-            <h:inputText id="name" value="#{registerRequest.name}" required="true" requiredMessage="#{msg['name']}">
-            </h:inputText>
-            <h:message id="nameoutput" for="name" display="text" style = "color:red"/>
+                <h:panelGroup class="form-group">
+                    <div class="form-group">
+                        <h:outputLabel value="Name: "/>
+                        <h:inputText id="name" value="#{registerRequest.name}" required="true"
+                                     requiredMessage="#{msg['name']}">
+                        </h:inputText>
+                        <h:message id="nameoutput" for="name" display="text" style="color:red"/>
+                    </div>
+                </h:panelGroup>
+
+                <h:panelGroup class="form-group">
+                    <div class="form-group">
+                        <h:outputLabel value="Password: "/>
+                        <h:inputSecret value="#{registerRequest.password}" id="password" required="true"
+                                       requiredMessage="#{msg['password']}">
+                        </h:inputSecret>
+                        <h:message for="password" style="color: red;"/>
+                    </div>
+                </h:panelGroup>
+
+
+                <h:panelGroup class="form-group">
+                    <div class="form-group">
+                        <h:outputLabel value="Username: "/>
+                        <h:inputText id="username" value="#{registerRequest.username}" required="true"
+                                     requiredMessage="#{msg['username']}">
+                        </h:inputText>
+                        <h:message for="username" style="color: red;"/>
+                    </div>
+                </h:panelGroup>
+
+                <h:panelGroup class="form-group">
+                    <div class="form-group">
+                        <h:outputLabel value="Email: "/>
+                        <h:inputText id="email" value="#{registerRequest.email}" required="true"
+                                     requiredMessage="#{msg['email']}">
+                        </h:inputText>
+                        <h:message for="email" style="color: red;"/>
+                    </div>
+                </h:panelGroup>
+
+                <h:panelGroup class="form-group">
+                    <div class="form-group">
+                        <h:outputLabel value="Birth Date: "/>
+                        <h:inputText id="birth" value="#{registerRequest.birthDate}" required="true"
+                                     requiredMessage="#{msg['birth']}">
+                        </h:inputText>
+                        <h:message for="birth" style="color: red;"/>
+                    </div>
+                </h:panelGroup>
+
+                <div class="wrap-login100" align="center">
+                    <h:panelGroup class="form-group">
+                        <div class="form-group">
+                            <h:outputLabel value="Role: "/>
+                            <h:selectOneRadio value="#{registerRequest.role}" required="true" requiredMessage="#{msg['role']}" id="role">
+                                <f:selectItem itemValue="admin" itemLabel="Admin"/>
+                                <f:selectItem itemValue="user" itemLabel="Standard"/>
+                            </h:selectOneRadio>
+                            <h:message for="role" style="color: red;"/>
+                        </div>
+                    </h:panelGroup>
                 </div>
-            </h:panelGroup>
-
-            <h:panelGroup class="form-group">
-                <div class="form-group">
-            <h:outputLabel value="Password: "/>
-            <h:inputSecret value="#{registerRequest.password}" id="password"  required="true" requiredMessage="#{msg['password']}">
-            </h:inputSecret>
-                <h:message for="password" style="color: red;" />
-                </div>
-            </h:panelGroup>
 
 
-            <h:panelGroup class="form-group">
-                <div class="form-group">
-            <h:outputLabel value="Username: "/>
-            <h:inputText id="username" value="#{registerRequest.username}" required="true" requiredMessage="#{msg['username']}">
-            </h:inputText>
-                <h:message for="username" style="color: red;"/>
-                </div>
-            </h:panelGroup>
+                <h:commandButton value="Register" class="btn btn-outline-primary" action="#{userController.register}"/>
 
-            <h:panelGroup class="form-group">
-                <div class="form-group">
-            <h:outputLabel value="Email: "/>
-            <h:inputText id="email" value="#{registerRequest.email}" required="true" requiredMessage="#{msg['email']}">
-            </h:inputText>
-                <h:message for="email" style="color: red;" />
-                </div>
-            </h:panelGroup>
-
-            <h:panelGroup class="form-group">
-                <div class="form-group">
-            <h:outputLabel value="Birth Date: "/>
-            <h:inputText id="birth" value="#{registerRequest.birthDate}" required="true" requiredMessage="#{msg['birth']}">
-            </h:inputText>
-                <h:message  for="birth" style="color: red;" />
-                </div>
-            </h:panelGroup>
-
-            <h:panelGroup class="form-group">
-                <div class="form-group">
-                    <h:outputLabel value="Role: "/>
-                    <h:inputText id="role" value="#{registerRequest.role}" required="true">
-                    </h:inputText>
-                </div>
-            </h:panelGroup>
-
-            <h:commandButton value="Register" class="btn btn-outline-primary" action="#{userController.register}"/>
-
-                <h:button value="Go to Login" class="btn btn-outline-primary" outcome="login.xhtml" />
-
-
+                <h:button value="Go to Login" class="btn btn-outline-primary" outcome="login.xhtml"/>
 
 
             </h:form>
+
+
         </ui:define>
     </ui:composition>
 

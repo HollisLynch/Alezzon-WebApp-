@@ -14,18 +14,20 @@
                 <h:form>
 
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel value="Add Category" />
+                        <h:outputLabel value="Add Category"/>
                     </div>
 
-                    <h:inputHidden value="#{categoryController.getAddRequest().id}" />
+                    <h:inputHidden value="#{categoryController.getAddRequest().id}"/>
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel for="name" value = "Name"/>
-                        <h:inputText id="name" value="#{categoryController.getAddRequest().name}" class="form-control" immediate="true"/>
+                        <h:outputLabel for="name" value="Name"/>
+                        <h:inputText id="name" required="true" value="#{categoryController.getAddRequest().name}" class="form-control"
+                                     immediate="true" requiredMessage="#{msg['invalid']}"/>
+                        <h:message for="name" style="color: red;"/>
                     </div>
 
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel for="branch" value = "Branch: "/>
-                        <h:selectOneMenu id = "branch" value="#{categoryController.getAddRequest().branchId}" >
+                        <h:outputLabel for="branch" value="Branch: "/>
+                        <h:selectOneMenu id="branch" value="#{categoryController.getAddRequest().branchId}">
                             <f:selectItems value="#{categoryController.getBranchList()}"
                                            var="branch"
                                            itemLabel="#{branch.name}"
@@ -33,15 +35,25 @@
                         </h:selectOneMenu>
                     </div>
 
-
-
-                    <h:commandButton value="Save"  action="#{categoryController.saveCategory}" class="login100-form-btn">
+                    <div class="wrap-login100" align="center">
+                    <h:commandButton value="Save" action="#{categoryController.saveCategory}" class="btn btn-outline-primary">
                     </h:commandButton>
-                    <h:button value="Menu" class="btn btn-outline-primary" outcome="admin.xhtml" />
-
-
+                    <h:button value="Menu" class="btn btn-outline-primary" outcome="admin.xhtml"/>
+                    </div>
 
                 </h:form>
+
+                <div class="wrap-login100" align="center">
+                    <h:link value="Go To Menu"
+                            outcome="admin">
+                    </h:link>
+                </div>
+
+                <div class="wrap-login100" align="center">
+                    <h:link value="Go To Product List"
+                            outcome="productList">
+                    </h:link>
+                </div>
 
             </ui:define>
         </ui:composition>

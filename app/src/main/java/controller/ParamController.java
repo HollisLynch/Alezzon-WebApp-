@@ -22,7 +22,7 @@ public class ParamController implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Inject
-    ParamService paramService;
+    ParamRepository paramRepository;
 
     private ParamRequest paramRequest;
 
@@ -39,35 +39,27 @@ public class ParamController implements Serializable {
     }
 
 
-
     public String save() {
 
 
-            String name = paramRequest.getValue();
+        String name = paramRequest.getValue();
 
-            Parametr p = new Parametr();
+        Parametr p = new Parametr();
 
-            p.setValue(name);
-            paramService.save(p);
+        p.setValue(name);
+        paramRepository.save(p);
 
-            return "/addParameter.xhtml?faces-redirect=true";
-
-    }
-
-    public String saveProductParam() {
-
-
-            return "/addParameter.xhtml?faces-redirect=true";
-
-
+        return "/addParameter.xhtml?faces-redirect=true";
 
     }
+
 
     public List<Parametr> getParamList() {
 
-        return paramService.findAll();
+        return paramRepository.findAll();
     }
 
 
-
+//    public List<Parametr> getGetParamListForProduct() {
+//    }
 }

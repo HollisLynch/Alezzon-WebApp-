@@ -20,61 +20,16 @@ public class ParamService {
     @Inject
     private ParamRepository paramRepository;
 
-
-    public List<Product> getProductListByOwnerId(Long ownerId) {
-        return productRepository.getProductListByOwnerId(ownerId);
-    }
-
-
     public List<Parametr> findAll() {
-        return paramRepository.getParamList();
+        return paramRepository.findAll();
     }
 
     public void save(Parametr parameter) {
         paramRepository.save(parameter);
     }
 
-    public void saveProductParam(ProductParametr parameter) {
-        paramRepository.saveProductParam(parameter);
-    }
-
-    public Product findProductById(Long productId) {
-        return productRepository.findProductById1(productId);
-    }
-
-
-
     public Parametr findParamById(Long parameterId) {
         return paramRepository.findParamById(parameterId);
     }
 
-    public boolean doesParamExist(String parameterName) {
-        try {
-            Parametr param = paramRepository.findParamByName(parameterName);
-            if (param.getValue().equals(parameterName))
-                return true;
-            return false;
-        } catch (NoResultException nre) {
-            System.out.println("Parameter does not exist");
-            return false;
-        }
-    }
-
-    public boolean doesProductParamExist(String valueParam, Long parameterId, Long productId) {
-        try {
-            ProductParametr prodParameter = paramRepository.findProductParamByIdByName(valueParam,parameterId,productId);
-
-            if (prodParameter.getValue().equals(valueParam))
-                return true;
-            return false;
-        } catch (NoResultException nre) {
-            System.out.println("Value of Parameter does not exist");
-            return false;
-        }
-    }
-
-
-    public Parametr findParamByName(String name) {
-        return paramRepository.findParamByName(name);
-    }
 }

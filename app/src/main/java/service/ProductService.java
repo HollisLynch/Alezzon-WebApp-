@@ -24,14 +24,11 @@ public class ProductService {
     private ProductRepository productRepository;
 
 
-    public List<Category> getCategoryList(){
-        return categoryRepository.getCategoryList();
-    }
-
-    public List<Product> getProductListByOwnerId(Long ownerId){
-        return productRepository.getProductListByOwnerId(ownerId);
+    public List<Product> getProductListByOwnerId(Long ownerId) {
+        return productRepository.findProductListByOwnerId(ownerId);
 
     }
+
     public void save(Product product) {
         productRepository.save(product);
     }
@@ -41,15 +38,11 @@ public class ProductService {
     }
 
     public Product getProductById(Long productId) {
-        return productRepository.getProductById(productId);
+        return productRepository.findProductById(productId);
     }
 
     public void saveParametersToProduct(ProductParametr productParametr) {
         productRepository.saveParametersToProduct(productParametr);
-    }
-
-    public List<Product> findAll() {
-        return productRepository.findAll();
     }
 
     public void savePicToProduct(Picture picture) {

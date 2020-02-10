@@ -9,28 +9,42 @@
 <f:view>
     <h:body>
         <ui:composition template="template.xhtml">
-        <ui:define name="content">
+            <ui:define name="content">
                 <h:form>
 
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel value="Add branch" />
+                        <h:outputLabel value="Add branch"/>
                     </div>
 
-                    <h:inputHidden value="#{branchController.getAddRequest().id}" />
+                    <h:inputHidden value="#{branchController.getAddRequest().id}"/>
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel for="name" value = "Name"/>
-                        <h:inputText id="name" required="true" value="#{branchController.getAddRequest().name}" class="form-control"/>
+                        <h:outputLabel for="name" value="Name"/>
+                        <h:inputText id="name" required="true" value="#{branchController.getAddRequest().name}"
+                                     class="form-control" requiredMessage="#{msg['invalid']}"/>
+                        <h:message for="name" style="color: red;"/>
                     </div>
 
                     <div class="wrap-login100" align="center">
-                        <h:commandButton value="Save" action="#{branchController.save()}" class="login100-form-btn"/>
-                        <h:button value="Menu" class="btn btn-outline-primary" outcome="admin.xhtml" />
+                        <h:commandButton value="Save" action="#{branchController.save()}" class="btn btn-outline-primary"/>
+                        <h:button value="Menu" class="btn btn-outline-primary" outcome="admin.xhtml"/>
 
                     </div>
 
                 </h:form>
 
-        </ui:define>
+                <div class="wrap-login100" align="center">
+                    <h:link value="Go To Menu"
+                            outcome="admin">
+                    </h:link>
+                </div>
+
+                <div class="wrap-login100" align="center">
+                    <h:link value="Go To Product List"
+                            outcome="productList">
+                    </h:link>
+                </div>
+
+            </ui:define>
         </ui:composition>
     </h:body>
 </f:view>

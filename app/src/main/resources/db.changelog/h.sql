@@ -1,2 +1,0 @@
-DELETE FROM section WHERE name IS NULL;
-DELETE FROM category WHERE name IS NULL;

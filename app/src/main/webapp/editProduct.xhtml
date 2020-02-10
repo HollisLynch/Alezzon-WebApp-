@@ -11,78 +11,97 @@
 <f:view>
 
     <f:metadata>
-        <f:viewParam name="id" id="id" value="#{productController.getAddRequest().id}"/>
+        <f:viewParam name="id" id="id" value="#{productController.getEditRequest().id}"/>
     </f:metadata>
 
-    <h:body>
+    <h:body >
 
         <ui:composition template="template.xhtml">
             <ui:define name="content">
 
-                <h:form>
+                <h:outputText value="No request for editing product" rendered="#{not productController.getIsEditRequestSend()}"/>
+
+                <h:form rendered="#{productController.getIsEditRequestSend()}">
 
 
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel for="id" value = "Id: "/>
+                        <h:outputLabel for="id">Id: </h:outputLabel>
                         <h:outputText name="id" value="#{productController.getEditRequest().id}"/>
                     </div>
 
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel for="title" value = "Title: "/>
-                            <h:inputText id="title" value="#{productController.getEditRequest().title}"/>
-                        </div>
-
-
-
-                    <div class="wrap-login100" align="center">
-                        <h:outputLabel for="description" value = "Description: "/>
-                        <h:inputText id="description" value="#{productController.getEditRequest().description}"/>
-                    </div>
-
-                    <div class="wrap-login100" align="center">
-                            <h:outputLabel for="description" value = "Pictures: "/>
-                            <ui:repeat var="picture" value="#{listProductController.getPicListByProductId(productController.getAddRequest().id)}">
-                                <h:graphicImage value = "#{picture.link}" height="60px" width="60px" alt="Image not found"/>
-                            </ui:repeat >
-                    </div>
-
-
-<!--                    <div class="wrap-login100" align="center">-->
-<!--                        <h:outputLabel for="paramlist">Parametr: </h:outputLabel>-->
-<!--                        <h:selectOneMenu class="form-control"-->
-<!--                                         id="paramlist"-->
-<!--                                         value="#{productController.getAddRequest().parameterId}">-->
-<!--                            <f:selectItems value="#{paramController.getParamList()}"-->
-<!--                                           var="parametr"-->
-<!--                                           itemValue="#{parametr.id}"-->
-<!--                                           itemLabel="#{parametr.value}"/>-->
-<!--                        </h:selectOneMenu>-->
-<!--                    </div>-->
-
-<!--                    <div class="wrap-login100" align="center">-->
-<!--                        <h:outputLabel for="value">Value: </h:outputLabel>-->
-<!--                        <h:inputText id="value"-->
-<!--                                     value="#{productController.getAddRequest().value}"-->
-<!--                                     class="form-control">-->
-<!--                        </h:inputText>-->
-<!--                    </div>-->
-
-
-                    <div class="wrap-login100" align="center">
-                        <h:outputLabel for="price" value = "Price: "/>
-                            <h:inputText id="price" value="#{productController.getEditRequest().price}" />
+                        <h:outputLabel for="categorylist">Category: </h:outputLabel>
+                        <h:selectOneMenu class="form-control"
+                                         id="categorylist"
+                                         value="#{productController.getEditRequest().categoryId}">
+                            <f:selectItems value="#{categoryController.getCategoryList()}"
+                                           var="category"
+                                           itemValue="#{category.id}"
+                                           itemLabel="#{category.name}"/>
+                        </h:selectOneMenu>
                     </div>
 
 
                     <div class="wrap-login100" align="center">
-                            <h:commandButton value = "Edit Product"
-                                             action = "#{productController.editProduct()}">
-                            </h:commandButton>
+                        <h:outputLabel for="title">Title: </h:outputLabel>
+                        <h:inputText id="title"
+                                     value="#{productController.getEditRequest().title}"
+                                     class="form-control"
+                                     required="true"/>
                     </div>
 
-                    <br/>
+                    <div class="wrap-login100" align="center">
+                        <h:outputLabel for="description">Description: </h:outputLabel>
+                        <h:inputText id="description"
+                                     value="#{productController.getEditRequest().description}"
+                                     class="form-control"
+                                     required="true"/>
+                    </div>
+
+                    <div class="wrap-login100" align="center">
+                        <h:outputLabel for="price">Price: </h:outputLabel>
+                        <h:inputText id="price" value="#{productController.getEditRequest().price}"
+                                     class="form-control" required="true">
+                        </h:inputText>
+                    </div>
+
+
+                    <div class="wrap-login100" align="center">
+                        <ui:repeat var="picture"
+                                   value="#{listProductController.getPicListByProductId(productController.getEditRequest().id)}">
+                            <h:graphicImage value="#{picture.link}" height="95px" width="80px"
+                                            alt="Error"/>
+                        </ui:repeat>
+                    </div>
+
+                    <div class="wrap-login100" align="center">
+                        <h:commandButton value="Save Edited Product" action="#{productController.editProduct()}"
+                                         class="btn btn-outline-primary"/>
+
+                    </div>
 
                 </h:form>
+
+                <div class="wrap-login100" align="center">
+                    <h:link value="Edit Parameters"
+                            outcome="editParameters">
+                        <f:param name="productId" value="#{productController.getEditRequest().id}"/>
+                    </h:link>
+                </div>
+
+                <div class="wrap-login100" align="center">
+                    <h:link value="Edit Pictures"
+                            outcome="editPictures">
+                        <f:param name="productId" value="#{productController.getEditRequest().id}"/>
+                    </h:link>
+                </div>
+
+                <div class="wrap-login100" align="center">
+                    <h:link value="Go To Product List"
+                            outcome="productList">
+                    </h:link>
+                </div>
+
 
             </ui:define>
         </ui:composition>

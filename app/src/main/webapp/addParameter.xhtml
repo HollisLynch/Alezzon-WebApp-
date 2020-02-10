@@ -16,28 +16,39 @@
 
                 <h:form class="form">
 
-                    <h:inputHidden value="#{paramController.getAddParamRequest().id}" />
-                    <f:param name="paramId" value="#{paramController.getAddParamRequest().id}" />
+                    <h:inputHidden value="#{paramController.getAddParamRequest().id}"/>
+                    <f:param name="paramId" value="#{paramController.getAddParamRequest().id}"/>
 
                     <div class="wrap-login100" align="center">
                         <h:outputLabel for="parameter">Name of parameter</h:outputLabel>
                         <h:inputText id="parameter"
                                      value="#{paramController.getAddParamRequest().value}"
-                                     class="form-control" required="true">
-                        </h:inputText>
+                                     class="form-control" required="true" requiredMessage="#{msg['invalid']}"/>
+                        <h:message for="parameter" style="color: red;"/>
 
                         <div class="wrap-login100" align="center">
                             <h:commandButton value="Save"
                                              action="#{paramController.save()}"
                                              class="btn btn-outline-primary"/>
                         </div>
-                        <h:button value="Menu" class="btn btn-outline-primary" outcome="admin.xhtml" />
+                        <h:button value="Menu" class="btn btn-outline-primary" outcome="admin.xhtml"/>
 
 
                     </div>
 
                 </h:form>
 
+                <div class="wrap-login100" align="center">
+                    <h:link value="Go To Menu"
+                            outcome="admin">
+                    </h:link>
+                </div>
+
+                <div class="wrap-login100" align="center">
+                    <h:link value="Go To Product List"
+                            outcome="productList">
+                    </h:link>
+                </div>
 
             </ui:define>
         </ui:composition>

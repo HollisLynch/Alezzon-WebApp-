@@ -6,7 +6,7 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
     http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
         version="2.0"
-        >
+>
 
 
     <application>
@@ -17,7 +17,7 @@
             <base-name>Messages</base-name>
             <var>msg</var>
         </resource-bundle>
-<!--        <resource-handler>org.omnifaces.resourcehandler.UnmappedResourceHandler</resource-handler>-->
+        <!--        <resource-handler>org.omnifaces.resourcehandler.UnmappedResourceHandler</resource-handler>-->
         <message-bundle>Messages</message-bundle>
     </application>
 </faces-config>

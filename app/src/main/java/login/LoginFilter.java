@@ -1,7 +1,5 @@
 package login;
 
-import model.User;
-
 import javax.faces.application.ResourceHandler;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -14,24 +12,37 @@ public class LoginFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
 
-        if (isResourceReq(req) || isSiteAllowed(req) || isUserLogged(req)) {
+        /*
+        0. ) if the request is resource, process the request.
+        1. ) Check if the user is logged in && !requires login -> process request .  Otherwise, redirect to login.
+        2. ) If the user has access rights, process the request. Otherwise, redirect to nopermission.xhtml
+        these should be in separate if elses.
+         */
 
-
+        if (isResourceReq(req)|| isSiteAllowed(req)){
             chain.doFilter(req, res);
+            return;
         }
-        else if (isResourceReq(req) || isAdminSite(req) || isAdminLogged(req)) {
+        if (  isUserLogged(req)) {
 
-            if (req.getRequestURI().equals(req.getContextPath() + "/welcome.xhtml")) {
-                res.sendRedirect(getServletContext().getContextPath() + "/admin.xhtml");
-            }
+            boolean isAdminSite
+                    =isAdminSite(req);
+            boolean hasAdminRights=hasAdminRights(req);
+            String reqUri=req.getRequestURI();
 
-            chain.doFilter(req, res);
-        }
+            if ( ( isAdminSite&& !hasAdminRights ) ) {
+                res.sendRedirect(getServletContext().getContextPath() + "/welcome.xhtml");
 
+              }else {
+                chain.doFilter(req, res);
 
-        else {
+                    }
+
+                }
+          else {
             res.sendRedirect(getServletContext().getContextPath() + "/login.xhtml");
         }
+
 
     }
 
@@ -43,11 +54,10 @@ public class LoginFilter extends HttpFilter {
     }
 
     private boolean isSiteAllowed(HttpServletRequest req) {
-
         return req.getRequestURI().equals(req.getContextPath() + "/login.xhtml") ||
-                req.getRequestURI().equals(req.getContextPath() + "/registration.xhtml");
+                req.getRequestURI().equals(req.getContextPath() + "/registration.xhtml") ||
+                req.getRequestURI().equals(req.getContextPath() + "/index.xhtml");
     }
-
 
 
     private boolean isUserLogged(HttpServletRequest req) {
@@ -57,12 +67,14 @@ public class LoginFilter extends HttpFilter {
 
     private boolean isAdminSite(HttpServletRequest req) {
 
-        return req.getRequestURI().equals(req.getContextPath() + "/admin.xhtml") ||
+        return (req.getRequestURI().equals(req.getContextPath() + "/admin.xhtml") ||
                 req.getRequestURI().contains("add") ||
-                req.getRequestURI().contains("edit")  ;
+                req.getRequestURI().contains("edit") )
+                &&!req.getRequestURI().contains("product")
+                &&!req.getRequestURI().contains("Product");
     }
 
-    private boolean isAdminLogged(HttpServletRequest req) {
+    private boolean hasAdminRights(HttpServletRequest req) {
         var session = req.getSession(false);
 
         return session != null && session.getAttribute("admin") != null;

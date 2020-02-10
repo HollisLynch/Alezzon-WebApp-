@@ -1,7 +1,5 @@
 package controller;
 
-import controller.converters.BranchConverter;
-import controller.converters.Retriever;
 import model.Branch;
 import model.Category;
 import repository.BranchRepository;
@@ -43,20 +41,30 @@ public class CategoryController implements Serializable {
 
     public String saveCategory() {
 
-            Long branchId = categoryRequest.getBranchId();
+        Long branchId = categoryRequest.getBranchId();
 
-            Branch branch = branchRepository.findBranchById(branchId);
+        Branch branch = branchRepository.findBranchById(branchId);
 
-            String name = categoryRequest.getName();
+        String name = categoryRequest.getName();
 
-            Category cat = new Category();
+        Category cat = new Category();
 
-            cat.setName(name);
-            cat.setBranch(branch);
+        cat.setName(name);
+        cat.setBranch(branch);
 
-            categoryRepository.save(cat);
+        categoryRepository.save(cat);
 
-            return "/addParameter.xhtml?faces-redirect=true";
+        return "/addParameter.xhtml?faces-redirect=true";
+
+    }
+
+    public String edit() {
+        Category oldCategory = categoryRepository.findCategoryById(categoryRequest.getId());
+
+        oldCategory.setName(categoryRequest.getEditCategory());
+
+        categoryRepository.save(oldCategory);
+        return "/editCategory.xhtml?faces-redirect=true";
 
     }
 

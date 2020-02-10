@@ -14,19 +14,23 @@
 
 <h:body>
     <ui:composition template="template.xhtml">
-    <ui:define name="content">
+        <ui:define name="content">
 
-    <div class="wrap-login100" align="center">
-        <div class="container-login100-form-btn">
-            <a class="container-login100-form-btn" href="addProduct.xhtml">Create product</a>
-        </div>
+            <div class="wrap-login100" align="center">
+                <div class="container-login100-form-btn">
+                    <a class="container-login100-form-btn" href="addProduct.xhtml">Create product</a>
+                </div>
 
-        <div class="container-login100-form-btn">
-            <a class="container-login100-form-btn" href="productList.xhtml">Your Products List</a>
-        </div>
+                <div class="container-login100-form-btn">
+                    <a class="container-login100-form-btn" href="productList.xhtml">Your Products List</a>
+                </div>
 
-    </div>
-    </ui:define>
+                <h:form>
+                    <h:commandLink action="#{logoutController.logOut()}" value="Logout"/>
+                </h:form>
+
+            </div>
+        </ui:define>
     </ui:composition>
 </h:body>
 

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 @ApplicationScoped
-public class Retriever{
+public class Retriever {
     @Inject
     private HttpServletRequest request;
 
@@ -29,17 +29,16 @@ public class Retriever{
     }
 
 
-
     public Long getLongUserId(String str) {
-        return (Long)request.getSession().getAttribute(str);
+        return (Long) request.getSession().getAttribute(str);
     }
 
     public Long getAsLong(Object value) {
-        return ((CategoryRequest)value).getId();
+        return ((CategoryRequest) value).getId();
     }
 
     public String getAsString(Object value) {
-        return String.valueOf(((Parametr)value).getId());
+        return String.valueOf(((Parametr) value).getId());
     }
 
 

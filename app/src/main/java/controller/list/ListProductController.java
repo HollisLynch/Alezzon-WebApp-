@@ -24,9 +24,6 @@ public class ListProductController {
     ProductListService productListService;
 
     @Inject
-    ParamService paramService;
-
-    @Inject
     Retriever retriever;
 
 
@@ -36,23 +33,17 @@ public class ListProductController {
         return ownerid;
     }
 
-    public List<Product> getProductListByOwnerId() {
-
-        Long ownerId = getOwnerId();
-        return paramService.getProductListByOwnerId(ownerId);
-
-    }
 
     public List<Product> getProductListForUser() {
 
             Long ownerId = retriever.getLongUserId("id");
-            return productRepository.getProductListByOwnerId(ownerId);
+            return productRepository.findProductListByOwnerId(ownerId);
 
     }
 
     public Product getProduct() {
         Long productId = retriever.getLong("productId");
-        return productRepository.getProductById(productId);
+        return productRepository.findProductById(productId);
     }
 
     public List<ProductParametr> getParamByProductId(Long productId) {
@@ -72,5 +63,12 @@ public class ListProductController {
     }
 
 
-
+    public boolean getGetEmptyList() {
+        Long ownerId = retriever.getLongUserId("id");
+        List<Product> listProduct = productRepository.findProductListByOwnerId(ownerId);
+        if(listProduct.isEmpty()) {
+            return true;
+        }
+        return false;
+    }
 }

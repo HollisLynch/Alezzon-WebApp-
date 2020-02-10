@@ -4,6 +4,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
@@ -11,8 +12,21 @@
 </h:head>
 
 <h:body>
-    <h2>Witaj w <h:outputText value="#{msg['jaz.app.name']}"/>!</h2>
-    <a href="login.xhtml">Login</a>
+
+    <ui:composition template="template.xhtml">
+    <ui:define name="content">
+
+        <div class="wrap-login100" align="center">
+        <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <div class="container-login100-form-btn">
+                <a class="container-login100-form-btn" href="login.xhtml">Go To Login Page</a>
+            </div>
+        </div>
+        </div>
+
+    </ui:define>
+    </ui:composition>
+
 </h:body>
 
 </html>

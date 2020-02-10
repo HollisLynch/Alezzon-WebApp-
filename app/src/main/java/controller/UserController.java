@@ -29,7 +29,7 @@ public class UserController {
 
 
     @Transactional
-    public String register(){
+    public String register() {
 
         User user = new User(registerRequest.getName(), registerRequest.getUsername(), registerRequest.getPassword(), registerRequest.getEmail(), registerRequest.getBirthDate(), registerRequest.getRole());
         addUser(user);
@@ -39,8 +39,7 @@ public class UserController {
     public void addUser(User user) {
         if (loginController.ifUserExists(registerRequest.getUsername(), registerRequest.getPassword())) {
             throw new IllegalStateException(String.format("User %s already exists.", user.getUsername()));
-        }
-        else {
+        } else {
             em.persist(user);
             var session = request.getSession(true);
             session.setAttribute("username", user.getUsername());

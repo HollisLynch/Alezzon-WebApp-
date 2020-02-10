@@ -6,44 +6,51 @@
       xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
 
-
     <f:metadata>
-        <f:viewParam name="branchId" value="#{branchController.addRequest.id}"/>
-        <f:viewParam name="name" value="#{branchController.addRequest.name}"/>
+        <f:viewParam name="productId" value="#{productController.getEditRequest().id}"/>
     </f:metadata>
 
     <h:body>
         <ui:composition template="template.xhtml">
             <ui:define name="content">
 
-                <h:form>
+
+
+                <h:form class="form">
+
 
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel value="Edit branch"/>
+                        <h:outputLabel for="product">Product ID: </h:outputLabel>
+                        <h:outputText name="product" value="#{productController.getEditRequest().id}"/>
                     </div>
 
-
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel for="branch" value="Branch: "/>
-                        <h:selectOneMenu id="branch" value="#{branchController.getAddRequest().id}">
-                            <f:selectItems value="#{categoryController.getBranchList()}"
-                                           var="branch"
-                                           itemLabel="#{branch.name}"
-                                           itemValue="#{branch.id}"/>
+                        <h:outputLabel for="paramlist">Parametr: </h:outputLabel>
+                        <h:selectOneMenu class="form-control"
+                                         id="paramlist"
+                                         value="#{productController.getEditRequest().parameterId}">
+                            <f:selectItems value="#{paramController.getParamListForProduct()}"
+                                           var="parametr"
+                                           itemValue="#{parametr.id}"
+                                           itemLabel="#{parametr.value}"/>
                         </h:selectOneMenu>
                     </div>
 
                     <div class="wrap-login100" align="center">
-                        <h:outputLabel for="name" value="Title: "/>
-                        <h:inputText id="name" value="#{branchController.addRequest.editBranch}" class="input100"
-                                     required="true" requiredMessage="#{msg['invalid']}"/>
-                        <h:message for="name" style="color: red;"/>
+                        <h:outputLabel for="value">Value: </h:outputLabel>
+                        <h:inputText id="value"
+                                     value="#{productController.getEditRequest().value}"
+                                     class="form-control" required="true">
+                        </h:inputText>
                     </div>
 
                     <div class="wrap-login100" align="center">
-                        <h:commandButton value="Save" action="#{branchController.edit}"
+                        <h:commandButton value="Save Parameters to Product"
+                                         action="#{productController.saveEditedParametersToProduct()}"
                                          class="btn btn-outline-primary"/>
                     </div>
+
+
 
                 </h:form>
 

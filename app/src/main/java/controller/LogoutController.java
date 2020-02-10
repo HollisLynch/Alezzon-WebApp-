@@ -13,19 +13,22 @@ import javax.servlet.http.HttpServletRequest;
 public class LogoutController {
 
 
-
-    public void logOut() {
+    public String logOut() {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context
                 .getExternalContext()
                 .getRequest();
 
         try {
+            request.getSession(true).invalidate();
             request.logout();
 
         } catch (ServletException e) {
             context.addMessage(null, new FacesMessage("Logout failed."));
         }
+
+        return "/login.xhtml?faces-redirect=true";
+
     }
 
 

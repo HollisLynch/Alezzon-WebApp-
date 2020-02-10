@@ -25,12 +25,4 @@ public class PictureService {
         pictureRepository.save(pic);
     }
 
-
-    public List<Product> getProductListByOwnerId(Long ownerId) {
-        return productRepository.getProductListByOwnerId(ownerId);
-    }
-
-    public Product findProductById(Long productId) {
-        return productRepository.findProductById1(productId);
-    }
 }

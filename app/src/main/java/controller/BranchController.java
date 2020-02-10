@@ -4,6 +4,7 @@ import controller.converters.Retriever;
 import model.Branch;
 import repository.BranchRepository;
 import request.BranchRequest;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -41,13 +42,10 @@ public class BranchController {
 
     public String edit() {
         Branch oldBranch = branchRepository.findBranchById(branchRequest.getId());
-        Long oldBranchId = oldBranch.getId();
 
-        Branch newBranch = new Branch();
-        newBranch.setId(oldBranchId);
-        newBranch.setName(branchRequest.getEditBranch());
+        oldBranch.setName(branchRequest.getEditBranch());
 
-        branchRepository.save(newBranch);
+        branchRepository.save(oldBranch);
         return "/editBranch.xhtml?faces-redirect=true";
 
     }
