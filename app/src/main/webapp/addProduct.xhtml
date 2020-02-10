@@ -67,11 +67,10 @@
             </h:form>
 
 
-            <h:form>
+            <h:form rendered="#{not listController.getEmptyList}">
 
                 <div class="wrap-login100" align="center">
                     <h:outputLabel for="productlist">Product: </h:outputLabel>
-                    <h:panelGrid rendered="#{not listController.getEmptyList}">
                     <h:selectOneMenu class="form-control"
                                      id="productlist"
                                      value="#{productController.getAddRequest().id}">
@@ -80,8 +79,6 @@
                                        itemValue="#{product.id}"
                                        itemLabel="#{product.title}"/>
                     </h:selectOneMenu>
-                    </h:panelGrid>
-                    <h:outputText value="No products" rendered="#{listController.getEmptyList}"/>
                 </div>
 
                 <div class="wrap-login100" align="center">
@@ -112,12 +109,12 @@
 
             </h:form>
 
+            <h:outputText value="No products" rendered="#{listController.getEmptyList}"/>
 
-            <h:form>
+            <h:form rendered="#{not listController.getEmptyList}">
 
                 <div class="wrap-login100" align="center">
                     <h:outputLabel for="productlistpic">Product: </h:outputLabel>
-                    <h:panelGrid rendered="#{not listController.getEmptyList}">
                     <h:selectOneMenu class="form-control"
                                      id="productlistpic"
                                      value="#{productController.getAddRequest().id}">
@@ -126,8 +123,6 @@
                                        itemValue="#{product.id}"
                                        itemLabel="#{product.title}"/>
                     </h:selectOneMenu>
-                    </h:panelGrid>
-                    <h:outputText value="No products" rendered="#{listController.getEmptyList}"/>
                 </div>
 
                 <div class="wrap-login100" align="center">
@@ -145,6 +140,9 @@
                 </div>
 
             </h:form>
+
+            <h:outputText value="No products" rendered="#{listController.getEmptyList}"/>
+
 
             <div class="wrap-login100" align="center">
                 <h:link value="Go To Menu"
