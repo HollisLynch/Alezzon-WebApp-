@@ -14,12 +14,13 @@
         <f:viewParam name="id" id="id" value="#{productController.getEditRequest().id}"/>
     </f:metadata>
 
-    <h:body >
+    <h:body>
 
         <ui:composition template="template.xhtml">
             <ui:define name="content">
 
-                <h:outputText value="No request for editing product" rendered="#{productController.getEmptyRequestSend()}"/>
+                <h:outputText value="No request for editing product"
+                              rendered="#{productController.getEmptyRequestSend()}"/>
 
                 <h:form rendered="#{not productController.getEmptyRequestSend()}">
 

@@ -68,7 +68,7 @@ public class LoginFilter extends HttpFilter {
 
                                         (req.getRequestURI().equals(req.getContextPath() + "/editCategory.xhtml")
 
-                        && !req.getRequestURI().contains("Product"))))));
+                                                && !req.getRequestURI().contains("Product"))))));
     }
 
     private boolean hasAdminRights(HttpServletRequest req) {

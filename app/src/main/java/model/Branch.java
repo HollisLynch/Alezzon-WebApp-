@@ -21,8 +21,7 @@ public class Branch implements Serializable {
         this.name = name;
     }
 
-    public Branch(Long id,String name)
-    {
+    public Branch(Long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -54,7 +53,7 @@ public class Branch implements Serializable {
             return false;
         Branch other = (Branch) obj;
 
-        return other.id==id;
+        return other.id == id;
     }
 
 }

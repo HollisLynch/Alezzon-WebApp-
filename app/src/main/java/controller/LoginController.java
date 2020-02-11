@@ -4,6 +4,7 @@ package controller;
 import model.User;
 import repository.UserRepository;
 import request.LoginRequest;
+
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -37,7 +38,7 @@ public class LoginController {
             FacesContext facesContext = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
 
-            session.setAttribute("user",user);
+            session.setAttribute("user", user);
             if (user.getRole().equals("admin")) {
                 session.setAttribute("admin", user.getUsername());
                 return "/admin.xhtml?faces-redirect=true";

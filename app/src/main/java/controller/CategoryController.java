@@ -79,7 +79,7 @@ public class CategoryController implements Serializable {
     }
 
     public boolean isEmptyList() {
-        if(findCategoryList().isEmpty()) {
+        if (findCategoryList().isEmpty()) {
             return true;
         }
         return false;

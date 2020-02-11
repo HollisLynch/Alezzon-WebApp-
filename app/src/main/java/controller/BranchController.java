@@ -53,7 +53,7 @@ public class BranchController {
 
     public boolean isEmptyList() {
         List<Branch> listBranch = branchRepository.findAll();
-        if(listBranch.isEmpty()) {
+        if (listBranch.isEmpty()) {
             return true;
         }
         return false;

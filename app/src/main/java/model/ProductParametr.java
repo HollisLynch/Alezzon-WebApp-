@@ -25,11 +25,18 @@ public class ProductParametr implements Serializable {
     public ProductParametr() {
     }
 
-    public ProductParametr(Product product, Parametr parameter, String value) { //TODO
+    public ProductParametr(Product product, Parametr parameter, String value) {
         this.product = product;
         this.parameter = parameter;
         this.value = value;
     }
+
+    public ProductParametr(Product product, Parametr parametr) {
+        this.product = product;
+        this.parameter = parametr;
+    }
+
+
 
     public Product getProduct() {
         return product;
@@ -58,4 +65,6 @@ public class ProductParametr implements Serializable {
     public void setValue(String value) {
         this.value = value;
     }
+
+
 }

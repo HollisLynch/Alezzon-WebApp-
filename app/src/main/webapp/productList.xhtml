@@ -18,7 +18,7 @@
             <ui:define name="content">
 
                 <div class="wrap-login100" align="center">
-                <h:outputText value="No products for your acc" rendered="#{listController.getEmptyList}"/>
+                    <h:outputText value="No products for your acc" rendered="#{listController.getEmptyList}"/>
                 </div>
 
                 <h:form id="productForm" rendered="#{not listController.getEmptyList}">
@@ -66,8 +66,7 @@
                             <f:facet name="header">Parameters:</f:facet>
                             <ui:repeat var="productParametr"
                                        value="#{listController.findParamByProductId(product.id)}">
-                                <h:outputText value="#{productParametr.parameter.value} : #{productParametr.value}"
-                                />
+                                <h:outputText value="#{productParametr.parameter.value} : #{productParametr.value}"/>
                             </ui:repeat>
                         </h:column>
 

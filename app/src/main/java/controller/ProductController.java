@@ -14,7 +14,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.RollbackException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -105,16 +104,20 @@ public class ProductController implements Serializable {
         Product p = productRepository.findProductById(productId);
         Parametr parametr = paramRepository.findParamById(parametrId);
 
-        ProductParametr productParametr = new ProductParametr();
+        List<Parametr> paramList = paramRepository.findAll();
 
-        if (p.getId().equals(productId) && parametr.getId().equals(parametrId)) {
-            return "/addProduct.xhtml?faces-redirect=true";
+        List<ProductParametr> pp = paramRepository.findParamByProductId(productId);
 
-        } else {
+        if (pp.toArray().length < paramList.toArray().length) {
+            ProductParametr productParametr = new ProductParametr();
+
             productParametr.setProduct(p);
             productParametr.setParameter(parametr);
             productParametr.setValue(value);
             productRepository.saveParams(productParametr);
+            return "/addProduct.xhtml?faces-redirect=true";
+
+        } else {
             return "/addProduct.xhtml?faces-redirect=true";
         }
 

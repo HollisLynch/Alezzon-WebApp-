@@ -70,27 +70,6 @@ public class Product implements Serializable{
 
 
 
-    //    public Product(Category category, String title,
-//                   String description, List<Picture> pictures,
-//                   List<ProductParametr> parameters, double price, Long user) {
-//        this.category = category;
-//        this.title = title;
-//        this.description = description;
-//        this.pictures = pictures;
-//        this.parameters = parameters;
-//        this.price = price;
-//        this.user = user;
-//    }
-
-//    public Product(Category category, String title,
-//                   String description, double price, Long user) {
-//        this.category = category;
-//        this.title = title;
-//        this.description = description;
-//        this.price = price;
-//        this.user = user;
-//    }
-
 
 
     public Long getUser() {
