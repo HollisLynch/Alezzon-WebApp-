@@ -36,14 +36,6 @@ public class ParamRepository {
         return param;
     }
 
-    @Transactional
-    public ProductParametr findProductParam(Long productId, Long paramId) {
-        return em.createQuery("select pp from ProductParametr pp  join Parametr par on pp.parameter.id = par.id  join Product p on pp.product.id=p.id where (par.id=:paramId and p.id=:productId)", ProductParametr.class)
-                .setParameter("productId", productId)
-                .setParameter("paramId", paramId)
-                .getSingleResult();
-    }
-
 
     @Transactional
     public List<ProductParametr> findParamByProductId(Long productId) {
